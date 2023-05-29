@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-import { stiksImage } from '@/assets/images';
+import { stiksImage, mentolImage, aromaImage } from '@/assets/images';
 import GuideSection from '@/components/GuideSection.vue';
 
 export default {
@@ -29,6 +29,16 @@ export default {
           image: stiksImage,
           title: 'Табачные стики',
           text: 'Выберите один параметр',
+        },
+        mentol: {
+          image: mentolImage,
+          title: 'Ментол',
+          text: 'Выберите один параметр',
+        },
+        aroma: {
+          image: aromaImage,
+          title: 'Ароматические ноты',
+          text: 'Можно выбрать несколько',
         },
       },
     };
