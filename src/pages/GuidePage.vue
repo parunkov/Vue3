@@ -13,7 +13,8 @@
         :image="section.image"
         :title="section.title"
         :text="section.text"
-      ></GuideSection>
+        >AAAA</GuideSection
+      >
     </div>
   </div>
 </template>

@@ -7,6 +7,7 @@
         <div class="kam-112908-section__text">{{ text }}</div>
       </div>
     </div>
+    <slot></slot>
   </div>
 </template>
 <script>
