@@ -45,8 +45,11 @@ export default {
   },
   components: { GuideSection },
   mounted() {
-    console.log(stiksImage);
-    console.log(this.sections.stiks.stiksImage);
+    const sticksSection = document.querySelector('.kam-112908-section_content_stiks');
+    if (sticksSection) {
+      sticksSection.classList.add('kam-112908-section_selected');
+      sticksSection.classList.add('kam-112908-section_active');
+    }
   },
 };
 </script>
