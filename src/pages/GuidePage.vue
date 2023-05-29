@@ -8,18 +8,21 @@
         ><span class="kam-112908-page__step-content">Табачные стики</span>
       </div>
       <GuideSection
-        v-for="section in sections"
+        v-for="(section, key) in sections"
         :key="section"
+        :modifier="key"
         :image="section.image"
         :title="section.title"
         :text="section.text"
-        >AAAA</GuideSection
       >
+        <GuideButtonsBlock :buttons="section.buttons" />
+      </GuideSection>
     </div>
   </div>
 </template>
 <script>
 import { stiksImage, mentolImage, aromaImage } from '@/assets/images';
+import GuideButtonsBlock from '@/components/GuideButtonsBlock.vue';
 import GuideSection from '@/components/GuideSection.vue';
 
 export default {
@@ -30,21 +33,83 @@ export default {
           image: stiksImage,
           title: 'Табачные стики',
           text: 'Выберите один параметр',
+          buttons: [
+            {
+              color: 'second',
+              text: 'Все',
+            },
+            {
+              color: 'second',
+              text: 'Heets',
+            },
+            {
+              color: 'second',
+              text: 'Fiit',
+            },
+          ],
         },
         mentol: {
           image: mentolImage,
           title: 'Ментол',
           text: 'Выберите один параметр',
+          buttons: [
+            {
+              color: 'second',
+              text: 'Не важно',
+            },
+            {
+              color: 'second',
+              text: 'Без ментола',
+            },
+            {
+              color: 'second',
+              text: 'С ментолом',
+            },
+          ],
         },
         aroma: {
           image: aromaImage,
           title: 'Ароматические ноты',
           text: 'Можно выбрать несколько',
+          buttons: [
+            {
+              color: 'thrid',
+              text: 'Ягодные',
+            },
+            {
+              color: 'fourth',
+              text: 'Фруктовые',
+            },
+            {
+              color: 'fifth',
+              text: 'Древесные',
+            },
+            {
+              color: 'sixth',
+              text: 'Пряные',
+            },
+            {
+              color: 'seventh',
+              text: 'Цитрусовые',
+            },
+            {
+              color: 'eighth',
+              text: 'Ореховые',
+            },
+            {
+              color: 'ninth',
+              text: 'Свежие травы',
+            },
+            {
+              color: 'tenth',
+              text: 'Цветочные',
+            },
+          ],
         },
       },
     };
   },
-  components: { GuideSection },
+  components: { GuideSection, GuideButtonsBlock },
   mounted() {
     const sticksSection = document.querySelector('.kam-112908-section_content_stiks');
     if (sticksSection) {

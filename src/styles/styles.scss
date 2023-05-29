@@ -26,6 +26,7 @@
 }
 @mixin buttonColor($modifier, $color) {
     .kam-112908-button_color_#{$modifier} {
+        background: transparent;
         &:hover {
             border: 1px solid #{$color};
         }
@@ -520,6 +521,7 @@
     &_color_second {
         padding-left: 0;
         padding-right: 0;
+        background: transparent;
         &:hover {
             border: 1px solid #00d1d2;
         }
