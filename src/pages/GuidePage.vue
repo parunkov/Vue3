@@ -15,7 +15,7 @@
         :title="section.title"
         :text="section.text"
       >
-        <GuideButtonsBlock :buttons="section.buttons" />
+        <GuideButtonsBlock :buttons="section.buttons" :firstButton="section.firstButton" />
       </GuideSection>
     </div>
   </div>
@@ -47,6 +47,10 @@ export default {
               text: 'Fiit',
             },
           ],
+          firstButton: {
+            color: 'first',
+            text: 'Продолжить',
+          },
         },
         mentol: {
           image: mentolImage,
@@ -66,6 +70,10 @@ export default {
               text: 'С ментолом',
             },
           ],
+          firstButton: {
+            color: 'first',
+            text: 'Продолжить',
+          },
         },
         aroma: {
           image: aromaImage,
@@ -105,6 +113,7 @@ export default {
               text: 'Цветочные',
             },
           ],
+          firstButton: null,
         },
       },
     };
