@@ -5,8 +5,14 @@
       :key="button.text"
       :color="button.color"
       :text="button.text"
+      @buttonClick="onButtonClick"
     />
-    <guide-button v-if="firstButton" :color="firstButton.color" :text="firstButton.text" />
+    <guide-button
+      v-if="firstButton"
+      :color="firstButton.color"
+      :text="firstButton.text"
+      @buttonClick="onButtonClick"
+    />
   </div>
 </template>
 <script>
@@ -18,5 +24,10 @@ export default {
     firstButton: Object,
   },
   components: { GuideButton },
+  methods: {
+    onButtonClick(event) {
+      console.log(event);
+    },
+  },
 };
 </script>

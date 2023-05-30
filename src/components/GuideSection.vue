@@ -2,6 +2,7 @@
   <div
     class="kam-112908-section kam-112908-section_type_main"
     :class="`kam-112908-section_content_${modifier}`"
+    :data-content="modifier"
   >
     <div class="kam-112908-section__title-block">
       <div class="kam-112908-section__image" v-html="image"></div>
