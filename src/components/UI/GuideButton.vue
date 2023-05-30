@@ -2,7 +2,7 @@
   <button
     type="button"
     class="kam-112908-button"
-    :class="`kam-112908-button_color_${color}`"
+    :class="[`kam-112908-button_color_${color}`, { 'kam-112908-button_active': active }]"
     :data-type="type"
     @click="
       $emit('buttonClick', {
@@ -23,6 +23,9 @@ export default {
     color: String,
     text: String,
     type: String,
+    active: Boolean,
   },
 };
 </script>
+
+<!-- :class="{'kam-112908-button_active': active}" -->

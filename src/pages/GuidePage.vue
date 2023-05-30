@@ -46,22 +46,26 @@ export default {
               color: 'second',
               text: 'Все',
               type: 'changeStiks',
+              active: false,
             },
             {
               color: 'second',
               text: 'Heets',
               type: 'changeStiks',
+              active: false,
             },
             {
               color: 'second',
               text: 'Fiit',
               type: 'changeStiks',
+              active: false,
             },
           ],
           firstButton: {
             color: 'first',
             text: 'Продолжить',
             type: 'selectStiks',
+            active: false,
           },
           active: true,
           selected: true,
@@ -75,22 +79,26 @@ export default {
               color: 'second',
               text: 'Не важно',
               type: 'changeMentol',
+              active: false,
             },
             {
               color: 'second',
               text: 'Без ментола',
               type: 'changeMentol',
+              active: false,
             },
             {
               color: 'second',
               text: 'С ментолом',
               type: 'changeMentol',
+              active: false,
             },
           ],
           firstButton: {
             color: 'first',
             text: 'Продолжить',
             type: 'selecteMentol',
+            active: false,
           },
           active: false,
           selected: false,
@@ -104,41 +112,49 @@ export default {
               color: 'thrid',
               text: 'Ягодные',
               type: 'selectAroma',
+              active: false,
             },
             {
               color: 'fourth',
               text: 'Фруктовые',
               type: 'selectAroma',
+              active: false,
             },
             {
               color: 'fifth',
               text: 'Древесные',
               type: 'selectAroma',
+              active: false,
             },
             {
               color: 'sixth',
               text: 'Пряные',
               type: 'selectAroma',
+              active: false,
             },
             {
               color: 'seventh',
               text: 'Цитрусовые',
               type: 'selectAroma',
+              active: false,
             },
             {
               color: 'eighth',
               text: 'Ореховые',
               type: 'selectAroma',
+              active: false,
             },
             {
               color: 'ninth',
               text: 'Свежие травы',
               type: 'selectAroma',
+              active: false,
             },
             {
               color: 'tenth',
               text: 'Цветочные',
               type: 'selectAroma',
+              active: false,
             },
           ],
           firstButton: null,
@@ -152,10 +168,20 @@ export default {
   methods: {
     onButtonClick(event) {
       // console.log(event);
+      if (event.type === 'changeStiks') {
+        this.sections.stiks.buttons.forEach((item) => (item.active = false));
+        this.sections.stiks.buttons.find((item) => item.text === event.text).active = true;
+        this.sections.stiks.firstButton.active = true;
+      }
       if (event.type === 'selectStiks' && event.active) {
         this.sections.stiks.active = false;
         this.sections.mentol.active = true;
         this.sections.mentol.selected = true;
+      }
+      if (event.type === 'changeMentol') {
+        this.sections.mentol.buttons.forEach((item) => (item.active = false));
+        this.sections.mentol.buttons.find((item) => item.text === event.text).active = true;
+        this.sections.mentol.firstButton.active = true;
       }
     },
   },
