@@ -153,7 +153,6 @@ export default {
     onButtonClick(event) {
       // console.log(event);
       if (event.type === 'selectStiks' && event.active) {
-        console.log(2222);
         this.sections.stiks.active = false;
         this.sections.mentol.active = true;
         this.sections.mentol.selected = true;

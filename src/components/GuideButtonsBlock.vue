@@ -32,7 +32,7 @@ export default {
       this.selectButton(event);
     },
     selectButton(event) {
-      if (event.type === 'changeStiks') {
+      if (event.type === 'changeStiks' || event.type === 'changeMentol') {
         this.$refs.buttonsBlock
           .querySelectorAll('.kam-112908-button_color_second')
           .forEach((item) => {
