@@ -5,12 +5,14 @@
       :key="button.text"
       :color="button.color"
       :text="button.text"
+      :type="button.type"
       @buttonClick="onButtonClick"
     />
     <guide-button
       v-if="firstButton"
       :color="firstButton.color"
       :text="firstButton.text"
+      :type="firstButton.type"
       @buttonClick="onButtonClick"
     />
   </div>

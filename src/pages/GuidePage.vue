@@ -37,19 +37,23 @@ export default {
             {
               color: 'second',
               text: 'Все',
+              type: 'changeStiks',
             },
             {
               color: 'second',
               text: 'Heets',
+              type: 'changeStiks',
             },
             {
               color: 'second',
               text: 'Fiit',
+              type: 'changeStiks',
             },
           ],
           firstButton: {
             color: 'first',
             text: 'Продолжить',
+            type: 'selectStiks',
           },
         },
         mentol: {
@@ -60,19 +64,23 @@ export default {
             {
               color: 'second',
               text: 'Не важно',
+              type: 'changeMentol',
             },
             {
               color: 'second',
               text: 'Без ментола',
+              type: 'changeMentol',
             },
             {
               color: 'second',
               text: 'С ментолом',
+              type: 'changeMentol',
             },
           ],
           firstButton: {
             color: 'first',
             text: 'Продолжить',
+            type: 'selecteMentol',
           },
         },
         aroma: {
@@ -83,34 +91,42 @@ export default {
             {
               color: 'thrid',
               text: 'Ягодные',
+              type: 'selectAroma',
             },
             {
               color: 'fourth',
               text: 'Фруктовые',
+              type: 'selectAroma',
             },
             {
               color: 'fifth',
               text: 'Древесные',
+              type: 'selectAroma',
             },
             {
               color: 'sixth',
               text: 'Пряные',
+              type: 'selectAroma',
             },
             {
               color: 'seventh',
               text: 'Цитрусовые',
+              type: 'selectAroma',
             },
             {
               color: 'eighth',
               text: 'Ореховые',
+              type: 'selectAroma',
             },
             {
               color: 'ninth',
               text: 'Свежие травы',
+              type: 'selectAroma',
             },
             {
               color: 'tenth',
               text: 'Цветочные',
+              type: 'selectAroma',
             },
           ],
           firstButton: null,

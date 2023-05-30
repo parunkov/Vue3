@@ -3,10 +3,12 @@
     type="button"
     class="kam-112908-button"
     :class="`kam-112908-button_color_${color}`"
+    :data-type="type"
     @click="
       $emit('buttonClick', {
         text: $event.target.innerText,
         section: $event.target.closest('.kam-112908-section')?.dataset?.content,
+        type: $event.target.dataset?.type,
       })
     "
   >
@@ -18,6 +20,7 @@ export default {
   props: {
     color: String,
     text: String,
+    type: String,
   },
 };
 </script>
