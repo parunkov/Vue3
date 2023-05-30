@@ -1,12 +1,12 @@
 <template>
   <div class="kam-112908-section__buttons-block">
-    <GuideButton
+    <guide-button
       v-for="button in buttons"
       :key="button.text"
       :color="button.color"
       :text="button.text"
     />
-    <GuideButton v-if="firstButton" :color="firstButton.color" :text="firstButton.text" />
+    <guide-button v-if="firstButton" :color="firstButton.color" :text="firstButton.text" />
   </div>
 </template>
 <script>

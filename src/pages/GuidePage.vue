@@ -7,7 +7,7 @@
           >Шаг <span class="kam-112908-page__step-number">1</span>: </span
         ><span class="kam-112908-page__step-content">Табачные стики</span>
       </div>
-      <GuideSection
+      <guide-section
         v-for="(section, key) in sections"
         :key="section"
         :modifier="key"
@@ -15,8 +15,8 @@
         :title="section.title"
         :text="section.text"
       >
-        <GuideButtonsBlock :buttons="section.buttons" :firstButton="section.firstButton" />
-      </GuideSection>
+        <guide-buttons-block :buttons="section.buttons" :firstButton="section.firstButton" />
+      </guide-section>
     </div>
   </div>
 </template>
