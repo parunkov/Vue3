@@ -14,8 +14,16 @@
         :image="section.image"
         :title="section.title"
         :text="section.text"
+        :class="{
+          'kam-112908-section_active': section.active,
+          'kam-112908-section_selected': section.selected,
+        }"
       >
-        <guide-buttons-block :buttons="section.buttons" :firstButton="section.firstButton" />
+        <guide-buttons-block
+          :buttons="section.buttons"
+          :firstButton="section.firstButton"
+          @buttonClick="onButtonClick"
+        />
       </guide-section>
     </div>
   </div>
@@ -55,6 +63,8 @@ export default {
             text: 'Продолжить',
             type: 'selectStiks',
           },
+          active: true,
+          selected: true,
         },
         mentol: {
           image: mentolImage,
@@ -82,6 +92,8 @@ export default {
             text: 'Продолжить',
             type: 'selecteMentol',
           },
+          active: false,
+          selected: false,
         },
         aroma: {
           image: aromaImage,
@@ -130,17 +142,23 @@ export default {
             },
           ],
           firstButton: null,
+          active: false,
+          selected: false,
         },
       },
     };
   },
   components: { GuideSection, GuideButtonsBlock },
-  mounted() {
-    const sticksSection = document.querySelector('.kam-112908-section_content_stiks');
-    if (sticksSection) {
-      sticksSection.classList.add('kam-112908-section_selected');
-      sticksSection.classList.add('kam-112908-section_active');
-    }
+  methods: {
+    onButtonClick(event) {
+      // console.log(event);
+      if (event.type === 'selectStiks' && event.active) {
+        console.log(2222);
+        this.sections.stiks.active = false;
+        this.sections.mentol.active = true;
+        this.sections.mentol.selected = true;
+      }
+    },
   },
 };
 </script>

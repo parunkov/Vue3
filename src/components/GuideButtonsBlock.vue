@@ -1,5 +1,5 @@
 <template>
-  <div class="kam-112908-section__buttons-block">
+  <div class="kam-112908-section__buttons-block" ref="buttonsBlock">
     <guide-button
       v-for="button in buttons"
       :key="button.text"
@@ -28,7 +28,21 @@ export default {
   components: { GuideButton },
   methods: {
     onButtonClick(event) {
-      console.log(event);
+      this.$emit('buttonClick', event);
+      this.selectButton(event);
+    },
+    selectButton(event) {
+      if (event.type === 'changeStiks') {
+        this.$refs.buttonsBlock
+          .querySelectorAll('.kam-112908-button_color_second')
+          .forEach((item) => {
+            item.classList.remove('kam-112908-button_active');
+          });
+        event.target.classList.add('kam-112908-button_active');
+        this.$refs.buttonsBlock
+          .querySelector('.kam-112908-button_color_first')
+          ?.classList.add('kam-112908-button_active');
+      }
     },
   },
 };

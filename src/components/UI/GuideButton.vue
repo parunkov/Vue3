@@ -9,6 +9,8 @@
         text: $event.target.innerText,
         section: $event.target.closest('.kam-112908-section')?.dataset?.content,
         type: $event.target.dataset?.type,
+        target: $event.target,
+        active: $event.target.classList.contains('kam-112908-button_active'),
       })
     "
   >
