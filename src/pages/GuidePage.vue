@@ -168,20 +168,19 @@ export default {
   methods: {
     onButtonClick(event) {
       // console.log(event);
-      if (event.type === 'changeStiks') {
-        this.sections.stiks.buttons.forEach((item) => (item.active = false));
-        this.sections.stiks.buttons.find((item) => item.text === event.text).active = true;
-        this.sections.stiks.firstButton.active = true;
-      }
+      this.changeButton(event, 'changeStiks', this.sections.stiks);
+      this.changeButton(event, 'changeMentol', this.sections.mentol);
       if (event.type === 'selectStiks' && event.active) {
         this.sections.stiks.active = false;
         this.sections.mentol.active = true;
         this.sections.mentol.selected = true;
       }
-      if (event.type === 'changeMentol') {
-        this.sections.mentol.buttons.forEach((item) => (item.active = false));
-        this.sections.mentol.buttons.find((item) => item.text === event.text).active = true;
-        this.sections.mentol.firstButton.active = true;
+    },
+    changeButton(event, eventType, object) {
+      if (event.type === eventType) {
+        object.buttons.forEach((item) => (item.active = false));
+        object.buttons.find((item) => item.text === event.text).active = true;
+        object.firstButton.active = true;
       }
     },
   },
