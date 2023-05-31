@@ -19,6 +19,7 @@
           'kam-112908-section_active': section.active,
           'kam-112908-section_selected': section.selected,
         }"
+        class="kam-112908-section_type_main"
       >
         <guide-buttons-block
           :buttons="section.buttons"
@@ -35,6 +36,14 @@
           @buttonClick="onButtonClick"
         />
       </guide-section>
+      <guide-button
+        :color="findButton.color"
+        :text="findButton.text"
+        :type="findButton.type"
+        :active="findButton.active"
+        @buttonClick="onButtonClick"
+        class="kam-112908-button_type_main"
+      />
     </div>
   </div>
 </template>
@@ -180,6 +189,12 @@ export default {
       },
       stepNumber: '1',
       stepText: 'Табачные стики',
+      findButton: {
+        color: 'first',
+        text: 'Показать результат',
+        type: 'findSticks',
+        active: false,
+      },
     };
   },
   components: { GuideSection, GuideButtonsBlock, GuideButton },
@@ -193,6 +208,7 @@ export default {
       this.changeSectionButton(event, 'changeStiksSection');
       this.changeSectionButton(event, 'changeMentolSection');
       this.changeAromaButton(event);
+      this.findButtonClick(event);
     },
     changeButton(event, eventType, object) {
       if (event.type === eventType) {
@@ -214,6 +230,7 @@ export default {
               (item) => item !== button.text,
             );
         }
+        this.findButton.active = this.sections.aroma.values.length > 0;
       }
     },
     enterButton(event, eventType) {
@@ -253,6 +270,11 @@ export default {
         }
         this.stepNumber = eventType === 'changeStiksSection' ? '1' : '2';
         this.stepText = eventType === 'changeStiksSection' ? 'Табачные стики' : 'Ментол';
+      }
+    },
+    findButtonClick(event) {
+      if (event.type === 'findSticks' && event.active) {
+        console.log('find!!!');
       }
     },
   },
