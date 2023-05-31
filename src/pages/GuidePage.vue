@@ -42,7 +42,11 @@
       />
       <div
         class="kam-112908-section kam-112908-section_type_addition"
-        :class="[{ 'kam-112908-section_hidden': additionSections.hidden }]"
+        :class="[
+          { 'kam-112908-section_hidden': additionSections.hidden },
+          { 'kam-112908-section_active': additionSections.active },
+          { 'kam-112908-section_selected': additionSections.active },
+        ]"
       >
         <div class="kam-112908-section__mobile-title">
           Вы можете указать дополнительные параметры для более точной рекомендации:
@@ -348,6 +352,7 @@ export default {
       console.log(event);
       this.changeButton(event, 'changeStiks', this.sections.stiks);
       this.changeButton(event, 'changeMentol', this.sections.mentol);
+      this.changeButton(event, 'changeCapsule', this.additionSections.capsule);
       this.enterButton(event, 'selectStiks');
       this.enterButton(event, 'selectMentol');
       this.changeSectionButton(event, 'changeStiksSection');
@@ -359,7 +364,9 @@ export default {
       if (event.type === eventType) {
         object.buttons.forEach((item) => (item.active = false));
         object.buttons.find((item) => item.text === event.text).active = true;
-        object.firstButton.active = true;
+        if (object.firstButton) {
+          object.firstButton.active = true;
+        }
         object.value = event.text;
       }
     },
@@ -376,6 +383,7 @@ export default {
             );
         }
         this.findButton.active = this.sections.aroma.values.length > 0;
+        this.additionSections.active = this.sections.aroma.values.length > 0;
       }
     },
     enterButton(event, eventType) {
