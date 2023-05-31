@@ -48,6 +48,7 @@ export default {
     return {
       sections: {
         stiks: {
+          value: '',
           image: stiksImage,
           title: 'Табачные стики',
           text: 'Выберите один параметр',
@@ -82,6 +83,7 @@ export default {
           selected: true,
         },
         mentol: {
+          value: '',
           image: mentolImage,
           title: 'Ментол',
           text: 'Выберите один параметр',
@@ -116,6 +118,7 @@ export default {
           selected: false,
         },
         aroma: {
+          values: [],
           image: aromaImage,
           title: 'Ароматические ноты',
           text: 'Можно выбрать несколько',
@@ -192,6 +195,7 @@ export default {
         object.buttons.forEach((item) => (item.active = false));
         object.buttons.find((item) => item.text === event.text).active = true;
         object.firstButton.active = true;
+        object.value = event.text;
       }
     },
     enterButton(event, eventType) {
@@ -199,6 +203,7 @@ export default {
         const oldSection = eventType === 'selectStiks' ? this.sections.stiks : this.sections.mentol;
         const newSection = eventType === 'selectStiks' ? this.sections.mentol : this.sections.aroma;
         const newType = eventType === 'selectStiks' ? 'changeStiksSection' : 'changeMentolSection';
+        oldSection.text = oldSection.value;
         oldSection.firstButton.selected = true;
         oldSection.firstButton.text = 'Изменить';
         oldSection.firstButton.type = newType;
@@ -219,10 +224,12 @@ export default {
         this.sections.mentol.firstButton.text = 'Продолжить';
         this.sections.mentol.firstButton.type = 'selectMentol';
         this.sections.mentol.firstButton.selected = false;
+        this.sections.mentol.text = 'Выберите один параметр';
         if (eventType === 'changeStiksSection') {
           this.sections.stiks.firstButton.text = 'Продолжить';
           this.sections.stiks.firstButton.type = 'selectStiks';
           this.sections.stiks.firstButton.selected = false;
+          this.sections.stiks.text = 'Выберите один параметр';
         }
       }
     },
