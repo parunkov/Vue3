@@ -184,6 +184,8 @@ export default {
       this.changeButton(event, 'changeMentol', this.sections.mentol);
       this.enterButton(event, 'selectStiks');
       this.enterButton(event, 'selectMentol');
+      this.changeSectionButton(event, 'changeStiksSection');
+      this.changeSectionButton(event, 'changeMentolSection');
     },
     changeButton(event, eventType, object) {
       if (event.type === eventType) {
@@ -193,16 +195,35 @@ export default {
       }
     },
     enterButton(event, eventType) {
-      const oldSection = eventType === 'selectStiks' ? this.sections.stiks : this.sections.mentol;
-      const newSection = eventType === 'selectStiks' ? this.sections.mentol : this.sections.aroma;
-      const newType = eventType === 'selectStiks' ? 'changeStiksSection' : 'changeMentolSection';
       if (event.type === eventType && event.active) {
+        const oldSection = eventType === 'selectStiks' ? this.sections.stiks : this.sections.mentol;
+        const newSection = eventType === 'selectStiks' ? this.sections.mentol : this.sections.aroma;
+        const newType = eventType === 'selectStiks' ? 'changeStiksSection' : 'changeMentolSection';
         oldSection.firstButton.selected = true;
         oldSection.firstButton.text = 'Изменить';
         oldSection.firstButton.type = newType;
         oldSection.active = false;
         newSection.active = true;
         newSection.selected = true;
+      }
+    },
+    changeSectionButton(event, eventType) {
+      if (event.type === eventType) {
+        this.sections.aroma.active = false;
+        this.sections.aroma.selected = false;
+        if (eventType === 'changeStiksSection') this.sections.mentol.active = false;
+        if (eventType === 'changeStiksSection') this.sections.mentol.selected = false;
+        const section =
+          eventType === 'changeStiksSection' ? this.sections.stiks : this.sections.mentol;
+        section.active = true;
+        this.sections.mentol.firstButton.text = 'Продолжить';
+        this.sections.mentol.firstButton.type = 'selectMentol';
+        this.sections.mentol.firstButton.selected = false;
+        if (eventType === 'changeStiksSection') {
+          this.sections.stiks.firstButton.text = 'Продолжить';
+          this.sections.stiks.firstButton.type = 'selectStiks';
+          this.sections.stiks.firstButton.selected = false;
+        }
       }
     },
   },
