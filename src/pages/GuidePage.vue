@@ -63,6 +63,14 @@
             :title="additionSections.taste.title"
             :text="additionSections.taste.text"
           />
+          <div class="kam-112908-section__content-block">
+            <div class="kam-112908-section__line-block"></div>
+            <div class="kam-112908-section__comments-block">
+              <div v-for="dot in additionSections.taste.dots" :key="dot.id">
+                {{ dot.text }}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -241,6 +249,44 @@ export default {
           image: tasteImage,
           title: 'Насыщенность вкуса',
           text: 'Вы можете дополнительно указать этот параметр для более точной рекомендаци',
+          dots: [
+            {
+              id: 1,
+              type: 'dot',
+              modifier: 'first',
+              text: 'Деликатный',
+              active: false,
+              selected: false,
+            },
+            {
+              id: 2,
+              type: 'line',
+              modifier: 'first',
+              selected: false,
+            },
+            {
+              id: 3,
+              type: 'dot',
+              modifier: 'second',
+              text: 'Сбалансированный',
+              active: false,
+              selected: false,
+            },
+            {
+              id: 4,
+              type: 'line',
+              modifier: 'second',
+              selected: false,
+            },
+            {
+              id: 5,
+              type: 'dot',
+              modifier: 'thrid',
+              text: 'Интенсивный',
+              active: false,
+              selected: false,
+            },
+          ],
         },
       },
       stepNumber: '1',
