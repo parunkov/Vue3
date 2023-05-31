@@ -77,6 +77,8 @@
                   { 'kam-112908-section__dot': dot.type === 'dot' },
                   { 'kam-112908-section__line': dot.type === 'line' },
                   { 'kam-112908-section__dot_active': dot.type === 'dot' && dot.active },
+                  { 'kam-112908-section__dot_selected': dot.type === 'dot' && dot.selected },
+                  { 'kam-112908-section__line_selected': dot.type === 'line' && dot.selected },
                   dot.class,
                 ]"
                 :data-type="dot.type"
@@ -370,11 +372,25 @@ export default {
       this.findButtonClick(event);
     },
     onDotClick(event) {
+      const id = +event.target.dataset?.id;
       const dot = this.additionSections.taste.dots.find(
-        (item) => item.type === 'dot' && item.id === +event.target.dataset?.id,
+        (item) => item.type === 'dot' && item.id === id,
       );
       if (dot) {
-        dot.active = true;
+        const savedDotActive = dot.active;
+        for (const key in this.additionSections.taste.dots) {
+          console.log(this.additionSections.taste.dots[key]);
+          this.additionSections.taste.dots[key].active = false;
+          this.additionSections.taste.dots[key].selected = false;
+          if (key < id - 1) this.additionSections.taste.dots[key].selected = true;
+        }
+        this.additionSections.taste.value = dot.text;
+        if (id === 1 && savedDotActive) {
+          this.additionSections.taste.value = '';
+          dot.active = false;
+        } else {
+          dot.active = true;
+        }
       }
     },
     changeButton(event, eventType, object) {
