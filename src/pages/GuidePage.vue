@@ -41,7 +41,8 @@
         class="kam-112908-button_type_main"
       />
       <div
-        class="kam-112908-section kam-112908-section_type_addition kam-112908-section_active kam-112908-section_selected"
+        class="kam-112908-section kam-112908-section_type_addition"
+        :class="[{ 'kam-112908-section_hidden': additionSections.hidden }]"
       >
         <div class="kam-112908-section__mobile-title">
           Вы можете указать дополнительные параметры для более точной рекомендации:
@@ -323,6 +324,8 @@ export default {
             selected: false,
           },
         },
+        hidden: true,
+        active: false,
       },
       stepNumber: '1',
       stepText: 'Табачные стики',
@@ -389,6 +392,10 @@ export default {
         newSection.selected = true;
         this.stepNumber = eventType === 'selectStiks' ? '2' : '3';
         this.stepText = eventType === 'selectStiks' ? 'Ментол' : 'Ароматические ноты';
+
+        if (eventType === 'selectStiks') {
+          this.additionSections.hidden = !(this.sections.stiks.value === 'Heets');
+        }
       }
     },
     changeSectionButton(event, eventType) {
