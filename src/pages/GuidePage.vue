@@ -24,6 +24,15 @@
           :firstButton="section.firstButton"
           @buttonClick="onButtonClick"
         />
+        <guide-button
+          v-if="section.firstButton"
+          :color="section.firstButton.color"
+          :text="section.firstButton.text"
+          :type="section.firstButton.type"
+          :active="section.firstButton.active"
+          :selected="section.firstButton.selected"
+          @buttonClick="onButtonClick"
+        />
       </guide-section>
     </div>
   </div>
@@ -32,6 +41,7 @@
 import { stiksImage, mentolImage, aromaImage } from '@/assets/images';
 import GuideButtonsBlock from '@/components/GuideButtonsBlock.vue';
 import GuideSection from '@/components/GuideSection.vue';
+import GuideButton from '@/components/UI/GuideButton.vue';
 
 export default {
   data() {
@@ -66,6 +76,7 @@ export default {
             text: 'Продолжить',
             type: 'selectStiks',
             active: false,
+            selected: false,
           },
           active: true,
           selected: true,
@@ -97,8 +108,9 @@ export default {
           firstButton: {
             color: 'first',
             text: 'Продолжить',
-            type: 'selecteMentol',
+            type: 'selectMentol',
             active: false,
+            selected: false,
           },
           active: false,
           selected: false,
@@ -164,23 +176,28 @@ export default {
       },
     };
   },
-  components: { GuideSection, GuideButtonsBlock },
+  components: { GuideSection, GuideButtonsBlock, GuideButton },
   methods: {
     onButtonClick(event) {
-      // console.log(event);
+      console.log(event);
       this.changeButton(event, 'changeStiks', this.sections.stiks);
       this.changeButton(event, 'changeMentol', this.sections.mentol);
-      if (event.type === 'selectStiks' && event.active) {
-        this.sections.stiks.active = false;
-        this.sections.mentol.active = true;
-        this.sections.mentol.selected = true;
-      }
+      this.enterButton(event, 'selectStiks', this.sections.stiks, this.sections.mentol);
+      this.enterButton(event, 'selectMentol', this.sections.mentol, this.sections.aroma);
     },
     changeButton(event, eventType, object) {
       if (event.type === eventType) {
         object.buttons.forEach((item) => (item.active = false));
         object.buttons.find((item) => item.text === event.text).active = true;
         object.firstButton.active = true;
+      }
+    },
+    enterButton(event, eventType, oldSection, newSection) {
+      if (event.type === eventType && event.active) {
+        oldSection.firstButton.selected = true;
+        oldSection.active = false;
+        newSection.active = true;
+        newSection.selected = true;
       }
     },
   },

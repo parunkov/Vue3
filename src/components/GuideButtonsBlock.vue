@@ -9,14 +9,6 @@
       :active="button.active"
       @buttonClick="onButtonClick"
     />
-    <guide-button
-      v-if="firstButton"
-      :color="firstButton.color"
-      :text="firstButton.text"
-      :type="firstButton.type"
-      :active="firstButton.active"
-      @buttonClick="onButtonClick"
-    />
   </div>
 </template>
 <script>
