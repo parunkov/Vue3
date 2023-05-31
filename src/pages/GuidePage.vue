@@ -182,20 +182,8 @@ export default {
       console.log(event);
       this.changeButton(event, 'changeStiks', this.sections.stiks);
       this.changeButton(event, 'changeMentol', this.sections.mentol);
-      this.enterButton(
-        event,
-        'selectStiks',
-        this.sections.stiks,
-        this.sections.mentol,
-        'changeStiksSection',
-      );
-      this.enterButton(
-        event,
-        'selectMentol',
-        this.sections.mentol,
-        this.sections.aroma,
-        'changeMentolSection',
-      );
+      this.enterButton(event, 'selectStiks');
+      this.enterButton(event, 'selectMentol');
     },
     changeButton(event, eventType, object) {
       if (event.type === eventType) {
@@ -204,7 +192,10 @@ export default {
         object.firstButton.active = true;
       }
     },
-    enterButton(event, eventType, oldSection, newSection, newType) {
+    enterButton(event, eventType) {
+      const oldSection = eventType === 'selectStiks' ? this.sections.stiks : this.sections.mentol;
+      const newSection = eventType === 'selectStiks' ? this.sections.mentol : this.sections.aroma;
+      const newType = eventType === 'selectStiks' ? 'changeStiksSection' : 'changeMentolSection';
       if (event.type === eventType && event.active) {
         oldSection.firstButton.selected = true;
         oldSection.firstButton.text = 'Изменить';
