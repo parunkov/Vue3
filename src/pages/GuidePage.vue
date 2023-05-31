@@ -57,13 +57,19 @@
             @buttonClick="onButtonClick"
           />
         </div>
-        <div class="kam-112908-section__container"></div>
+        <div class="kam-112908-section__container">
+          <guide-section-title
+            :image="additionSections.taste.image"
+            :title="additionSections.taste.title"
+            :text="additionSections.taste.text"
+          />
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { stiksImage, mentolImage, aromaImage, capsuleImage } from '@/assets/images';
+import { stiksImage, mentolImage, aromaImage, capsuleImage, tasteImage } from '@/assets/images';
 import GuideButtonsBlock from '@/components/GuideButtonsBlock.vue';
 import GuideSection from '@/components/GuideSection.vue';
 import GuideSectionTitle from '@/components/GuideSectionTitle.vue';
@@ -229,6 +235,12 @@ export default {
               active: false,
             },
           ],
+        },
+        taste: {
+          value: '',
+          image: tasteImage,
+          title: 'Насыщенность вкуса',
+          text: 'Вы можете дополнительно указать этот параметр для более точной рекомендаци',
         },
       },
       stepNumber: '1',

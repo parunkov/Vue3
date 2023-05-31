@@ -52,4 +52,14 @@ const capsuleImage = `
 </svg>
 `;
 
-export { stiksImage, mentolImage, aromaImage, capsuleImage };
+const tasteImage = `
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M24.75 17.25C29.9005 13.25 34.9005 13.25 39.75 17.25" stroke="#00D1D2" stroke-width="2" stroke-linecap="round"/>
+<path d="M8.25 13.5C13.3125 17.5 18.6378 17.5 24.2258 13.5C29.8138 9.5 35.2386 9.5 40.5 13.5" stroke="#34303D" stroke-width="2" stroke-linecap="round"/>
+<path d="M9.75 31.5C14.2317 35.5 18.3031 34.8364 23.25 30.8364" stroke="#00D1D2" stroke-width="2" stroke-linecap="round"/>
+<path d="M8.25 24C13.3125 28 18.6378 28 24.2258 24C29.8138 20 35.2386 20 40.5 24" stroke="#34303D" stroke-width="2" stroke-linecap="round"/>
+<path d="M8.25 34.5C13.3125 38.5 18.6378 38.5 24.2258 34.5C29.8138 30.5 35.2386 30.5 40.5 34.5" stroke="#34303D" stroke-width="2" stroke-linecap="round"/>
+</svg>
+`;
+
+export { stiksImage, mentolImage, aromaImage, capsuleImage, tasteImage };
