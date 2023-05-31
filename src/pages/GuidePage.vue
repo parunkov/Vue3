@@ -4,8 +4,9 @@
       <div class="kam-112908-page__title">Выберите параметры</div>
       <div class="kam-112908-page__text">
         <span class="kam-112908-page__step"
-          >Шаг <span class="kam-112908-page__step-number">1</span>: </span
-        ><span class="kam-112908-page__step-content">Табачные стики</span>
+          >Шаг <span class="kam-112908-page__step-number">{{ stepNumber }}</span
+          >: </span
+        ><span class="kam-112908-page__step-content">{{ stepText }}</span>
       </div>
       <guide-section
         v-for="(section, key) in sections"
@@ -177,6 +178,8 @@ export default {
           selected: false,
         },
       },
+      stepNumber: '1',
+      stepText: 'Табачные стики',
     };
   },
   components: { GuideSection, GuideButtonsBlock, GuideButton },
@@ -210,6 +213,8 @@ export default {
         oldSection.active = false;
         newSection.active = true;
         newSection.selected = true;
+        this.stepNumber = eventType === 'selectStiks' ? '2' : '3';
+        this.stepText = eventType === 'selectStiks' ? 'Ментол' : 'Ароматические ноты';
       }
     },
     changeSectionButton(event, eventType) {
@@ -231,6 +236,8 @@ export default {
           this.sections.stiks.firstButton.selected = false;
           this.sections.stiks.text = 'Выберите один параметр';
         }
+        this.stepNumber = eventType === 'changeStiksSection' ? '1' : '2';
+        this.stepText = eventType === 'changeStiksSection' ? 'Табачные стики' : 'Ментол';
       }
     },
   },
