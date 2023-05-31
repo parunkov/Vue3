@@ -192,6 +192,7 @@ export default {
       this.enterButton(event, 'selectMentol');
       this.changeSectionButton(event, 'changeStiksSection');
       this.changeSectionButton(event, 'changeMentolSection');
+      this.changeAromaButton(event);
     },
     changeButton(event, eventType, object) {
       if (event.type === eventType) {
@@ -199,6 +200,20 @@ export default {
         object.buttons.find((item) => item.text === event.text).active = true;
         object.firstButton.active = true;
         object.value = event.text;
+      }
+    },
+    changeAromaButton(event) {
+      if (event.type === 'selectAroma') {
+        const button = this.sections.aroma.buttons.find((item) => item.text === event.text);
+        if (button) {
+          button.active = !button.active;
+          if (button.active && !this.sections.aroma.values.includes(button.text))
+            this.sections.aroma.values.push(button.text);
+          if (!button.active)
+            this.sections.aroma.values = this.sections.aroma.values.filter(
+              (item) => item !== button.text,
+            );
+        }
       }
     },
     enterButton(event, eventType) {
