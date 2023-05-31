@@ -21,11 +21,7 @@
         }"
         class="kam-112908-section_type_main"
       >
-        <guide-buttons-block
-          :buttons="section.buttons"
-          :firstButton="section.firstButton"
-          @buttonClick="onButtonClick"
-        />
+        <guide-buttons-block :buttons="section.buttons" @buttonClick="onButtonClick" />
         <guide-button
           v-if="section.firstButton"
           :color="section.firstButton.color"
@@ -51,7 +47,15 @@
           Вы можете указать дополнительные параметры для более точной рекомендации:
         </div>
         <div class="kam-112908-section__container">
-          <guide-section />
+          <guide-section-title
+            :image="additionSections.capsule.image"
+            :title="additionSections.capsule.title"
+            :text="additionSections.capsule.text"
+          />
+          <guide-buttons-block
+            :buttons="additionSections.capsule.buttons"
+            @buttonClick="onButtonClick"
+          />
         </div>
         <div class="kam-112908-section__container"></div>
       </div>
@@ -59,9 +63,10 @@
   </div>
 </template>
 <script>
-import { stiksImage, mentolImage, aromaImage } from '@/assets/images';
+import { stiksImage, mentolImage, aromaImage, capsuleImage } from '@/assets/images';
 import GuideButtonsBlock from '@/components/GuideButtonsBlock.vue';
 import GuideSection from '@/components/GuideSection.vue';
+import GuideSectionTitle from '@/components/GuideSectionTitle.vue';
 import GuideButton from '@/components/UI/GuideButton.vue';
 
 export default {
@@ -198,6 +203,34 @@ export default {
           selected: false,
         },
       },
+      additionSections: {
+        capsule: {
+          value: '',
+          image: capsuleImage,
+          title: 'Капсула',
+          text: 'Вы можете дополнительно указать этот параметр для более точной рекомендаци',
+          buttons: [
+            {
+              color: 'second',
+              text: 'Не важно',
+              type: 'changeCapsule',
+              active: false,
+            },
+            {
+              color: 'second',
+              text: 'Без капсулы',
+              type: 'changeCapsule',
+              active: false,
+            },
+            {
+              color: 'second',
+              text: 'С капсулой',
+              type: 'changeCapsule',
+              active: false,
+            },
+          ],
+        },
+      },
       stepNumber: '1',
       stepText: 'Табачные стики',
       findButton: {
@@ -208,7 +241,7 @@ export default {
       },
     };
   },
-  components: { GuideSection, GuideButtonsBlock, GuideButton },
+  components: { GuideSection, GuideButtonsBlock, GuideButton, GuideSectionTitle },
   methods: {
     onButtonClick(event) {
       console.log(event);
