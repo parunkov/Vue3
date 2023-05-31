@@ -76,8 +76,13 @@
                 :class="[
                   { 'kam-112908-section__dot': dot.type === 'dot' },
                   { 'kam-112908-section__line': dot.type === 'line' },
+                  { 'kam-112908-section__dot_active': dot.type === 'dot' && dot.active },
                   dot.class,
                 ]"
+                :data-type="dot.type"
+                :data-value="dot.text"
+                :data-id="dot.id"
+                @click="onDotClick"
               ></div>
             </div>
             <div class="kam-112908-section__comments-block">
@@ -86,6 +91,10 @@
                 :key="dot.id"
                 class="kam-112908-section__coment"
                 :class="`kam-112908-section__coment_position_${dot.modifier}`"
+                :data-type="dot.type"
+                :data-value="dot.text"
+                :data-id="dot.id"
+                @click="onDotClick"
               >
                 {{ dot.text }}
               </div>
@@ -349,7 +358,7 @@ export default {
   },
   methods: {
     onButtonClick(event) {
-      console.log(event);
+      // console.log(event);
       this.changeButton(event, 'changeStiks', this.sections.stiks);
       this.changeButton(event, 'changeMentol', this.sections.mentol);
       this.changeButton(event, 'changeCapsule', this.additionSections.capsule);
@@ -359,6 +368,14 @@ export default {
       this.changeSectionButton(event, 'changeMentolSection');
       this.changeAromaButton(event);
       this.findButtonClick(event);
+    },
+    onDotClick(event) {
+      const dot = this.additionSections.taste.dots.find(
+        (item) => item.type === 'dot' && item.id === +event.target.dataset?.id,
+      );
+      if (dot) {
+        dot.active = true;
+      }
     },
     changeButton(event, eventType, object) {
       if (event.type === eventType) {
@@ -432,6 +449,9 @@ export default {
     findButtonClick(event) {
       if (event.type === 'findSticks' && event.active) {
         console.log('find!!!');
+        console.log(this.sections.stiks.value);
+        console.log(this.sections.mentol.value);
+        console.log(this.sections.aroma.values);
       }
     },
   },
