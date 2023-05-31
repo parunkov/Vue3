@@ -64,13 +64,36 @@
             :text="additionSections.taste.text"
           />
           <div class="kam-112908-section__content-block">
-            <div class="kam-112908-section__line-block"></div>
+            <div class="kam-112908-section__line-block">
+              <div
+                v-for="dot in additionSections.taste.dots"
+                :key="dot.id"
+                :class="[
+                  { 'kam-112908-section__dot': dot.type === 'dot' },
+                  { 'kam-112908-section__line': dot.type === 'line' },
+                  dot.class,
+                ]"
+              ></div>
+            </div>
             <div class="kam-112908-section__comments-block">
-              <div v-for="dot in additionSections.taste.dots" :key="dot.id">
+              <div
+                v-for="dot in dotComments"
+                :key="dot.id"
+                class="kam-112908-section__coment"
+                :class="`kam-112908-section__coment_position_${dot.modifier}`"
+              >
                 {{ dot.text }}
               </div>
             </div>
           </div>
+          <guide-button
+            :color="additionSections.taste.firstButton.color"
+            :text="additionSections.taste.firstButton.text"
+            :type="additionSections.taste.firstButton.type"
+            :active="additionSections.taste.firstButton.active"
+            @buttonClick="onButtonClick"
+            class="kam-112908-button_type_cancel"
+          />
         </div>
       </div>
     </div>
@@ -257,12 +280,14 @@ export default {
               text: 'Деликатный',
               active: false,
               selected: false,
+              class: 'kam-112908-section__dot_position_first',
             },
             {
               id: 2,
               type: 'line',
               modifier: 'first',
               selected: false,
+              class: 'kam-112908-section__line_position_first',
             },
             {
               id: 3,
@@ -271,12 +296,14 @@ export default {
               text: 'Сбалансированный',
               active: false,
               selected: false,
+              class: 'kam-112908-section__dot_position_second',
             },
             {
               id: 4,
               type: 'line',
               modifier: 'second',
               selected: false,
+              class: 'kam-112908-section__line_position_second',
             },
             {
               id: 5,
@@ -285,8 +312,16 @@ export default {
               text: 'Интенсивный',
               active: false,
               selected: false,
+              class: 'kam-112908-section__dot_position_thrid',
             },
           ],
+          firstButton: {
+            color: 'none',
+            text: 'Отменить',
+            type: 'cancelTaste',
+            active: false,
+            selected: false,
+          },
         },
       },
       stepNumber: '1',
@@ -300,6 +335,11 @@ export default {
     };
   },
   components: { GuideSection, GuideButtonsBlock, GuideButton, GuideSectionTitle },
+  computed: {
+    dotComments() {
+      return this.additionSections.taste.dots.filter((item) => item.type === 'dot');
+    },
+  },
   methods: {
     onButtonClick(event) {
       console.log(event);
