@@ -4,17 +4,12 @@
     :class="`kam-112908-section_content_${modifier}`"
     :data-content="modifier"
   >
-    <div class="kam-112908-section__title-block">
-      <div class="kam-112908-section__image" v-html="image"></div>
-      <div class="kam-112908-section__text-block">
-        <div class="kam-112908-section__title">{{ title }}</div>
-        <div class="kam-112908-section__text">{{ text }}</div>
-      </div>
-    </div>
+    <guide-section-title :text="text" :title="title" :image="image" />
     <slot></slot>
   </div>
 </template>
 <script>
+import GuideSectionTitle from './GuideSectionTitle.vue';
 export default {
   props: {
     modifier: String,
@@ -22,5 +17,6 @@ export default {
     title: String,
     text: String,
   },
+  components: { GuideSectionTitle },
 };
 </script>

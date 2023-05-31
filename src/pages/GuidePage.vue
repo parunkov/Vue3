@@ -44,6 +44,17 @@
         @buttonClick="onButtonClick"
         class="kam-112908-button_type_main"
       />
+      <div
+        class="kam-112908-section kam-112908-section_type_addition kam-112908-section_active kam-112908-section_selected"
+      >
+        <div class="kam-112908-section__mobile-title">
+          Вы можете указать дополнительные параметры для более точной рекомендации:
+        </div>
+        <div class="kam-112908-section__container">
+          <guide-section />
+        </div>
+        <div class="kam-112908-section__container"></div>
+      </div>
     </div>
   </div>
 </template>
