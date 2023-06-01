@@ -114,7 +114,17 @@
           </div>
         </div>
       </div>
-      <div v-else></div>
+      <div v-else>
+        <div v-for="stik in resultSticks" :key="stik.name">{{ stik.name }}</div>
+        <guide-button
+          :color="returnButton.color"
+          :text="returnButton.text"
+          :type="returnButton.type"
+          :active="returnButton.active"
+          @buttonClick="onButtonClick"
+          class="kam-112908-button_type_main"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -355,6 +365,13 @@ export default {
         active: false,
       },
       result: false,
+      resultSticks: [],
+      returnButton: {
+        color: 'first',
+        text: 'Изменить параметры',
+        type: 'return',
+        active: true,
+      },
     };
   },
   components: { GuideSection, GuideButtonsBlock, GuideButton, GuideSectionTitle },
@@ -376,6 +393,7 @@ export default {
       this.onChangeAromaButtonClick(event);
       this.onFindButtonClick(event);
       this.onCancelButtonClick(event);
+      this.onReturnButtonClick(event);
     },
     onDotClick(event) {
       const id = +event.target.dataset?.id;
@@ -443,6 +461,7 @@ export default {
           this.additionSections.hidden = !(this.sections.stiks.value === 'Heets');
         } else {
           this.findButton.active = this.sections.aroma.values.length > 0;
+          this.additionSections.active = this.sections.aroma.values.length > 0;
         }
       }
     },
@@ -468,6 +487,7 @@ export default {
         this.stepNumber = eventType === 'changeStiksSection' ? '1' : '2';
         this.stepText = eventType === 'changeStiksSection' ? 'Табачные стики' : 'Ментол';
         this.findButton.active = false;
+        this.additionSections.active = false;
       }
     },
     onCancelButtonClick(event) {
@@ -496,7 +516,18 @@ export default {
           .filter((item) =>
             data[item].aroma.some((item) => this.sections.aroma.values.includes(item)),
           );
-        console.log(filteredData);
+        // console.log(filteredData);
+        filteredData.forEach((item) => {
+          // console.log(data[item].name);
+          this.resultSticks.push(data[item]);
+        });
+        this.result = true;
+      }
+    },
+    onReturnButtonClick(event) {
+      if (event.type === 'return') {
+        this.result = false;
+        this.resultSticks = [];
       }
     },
   },
