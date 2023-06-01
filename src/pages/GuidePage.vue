@@ -114,8 +114,16 @@
           </div>
         </div>
       </div>
-      <div v-else>
-        <div v-for="stik in resultSticks" :key="stik.name">{{ stik.name }}</div>
+      <div v-else class="flavor-results__list__grid">
+        <div v-for="stik in resultSticks" :key="stik.name" class="flavor-results__product">
+          <div class="flavor-results__product-top">
+            <img class="flavor-results__product-img" :src="stik.resultImage" />
+          </div>
+          <div class="flavor-results__product-bottom">
+            <img class="flavor-results__product-icon" :src="stik.resultIcon" />
+            <span class="flavor-results__product-taste">{{ stik.resultText }}</span>
+          </div>
+        </div>
         <guide-button
           :color="returnButton.color"
           :text="returnButton.text"
@@ -366,6 +374,7 @@ export default {
       },
       result: false,
       resultSticks: [],
+      resultFiit: [],
       returnButton: {
         color: 'first',
         text: 'Изменить параметры',
@@ -528,6 +537,7 @@ export default {
       if (event.type === 'return') {
         this.result = false;
         this.resultSticks = [];
+        this.resultFiit = [];
       }
     },
   },

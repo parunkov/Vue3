@@ -28,4 +28,5 @@ nav {
   }
 }
 @import '@/styles/styles.scss';
+@import '@/styles/resultStyles.scss';
 </style>
