@@ -52,9 +52,11 @@ const data = {
     stiks: 'Heets',
     mentol: 'С ментолом',
     aroma: ['Фруктовые'],
-    resultImage: '',
-    resultIcon: '',
-    resultText: '',
+    resultImage:
+      'https://kz.iqos.com/upload/resize_cache/webp/upload/iblock/5ee/lgr6vg3cwhr9ohz334xa2tc24km0o917.webp',
+    resultIcon:
+      'https://kz.iqos.com/upload/resize_cache/webp/upload/iblock/405/7tfjusdryur0ppctwhh315uu6q192sde.webp',
+    resultText: 'ноты садовых зеленых фруктов с ментолом',
     resultPrice: 770,
   },
   123532: {
@@ -98,9 +100,11 @@ const data = {
     stiks: 'Heets',
     mentol: 'Без ментола',
     aroma: ['Ореховые'],
-    resultImage: '',
-    resultIcon: '',
-    resultText: '',
+    resultImage:
+      'https://kz.iqos.com/upload/resize_cache/webp/upload/iblock/327/e9hvq6fgeebwsxmsoxd1a4ovo0cfl13r.webp',
+    resultIcon:
+      'https://kz.iqos.com/upload/resize_cache/webp/upload/iblock/91e/yghy7rq2n2p406wcrs8ktf19enc15kph.webp',
+    resultText: 'ноты какао',
     resultPrice: 770,
   },
   274959: {
