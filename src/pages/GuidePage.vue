@@ -464,7 +464,11 @@ export default {
     },
     onCancelButtonClick(event) {
       if (event.type === 'cancelTaste') {
-        console.log(event);
+        for (const key in this.additionSections.taste.dots) {
+          this.additionSections.taste.dots[key].active = false;
+          this.additionSections.taste.dots[key].selected = false;
+        }
+        this.additionSections.taste.value = '';
       }
     },
     onFindButtonClick(event) {
