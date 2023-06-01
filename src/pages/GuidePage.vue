@@ -116,6 +116,13 @@
       </div>
       <div v-else>
         <div>
+          <div class="flavor-results__list__price" style="background-color: #1253a1" id="fpr">
+            <span class="flavor-results__list__price-text"> 740₸ </span>
+            <span class="flavor-results__list__price-ds">
+              цена <br />
+              за пачку
+            </span>
+          </div>
           <div class="flavor-results__list__grid">
             <div v-for="stik in resultFiit" :key="stik.name" class="flavor-results__product">
               <guide-result-item :stik="stik" />
@@ -123,6 +130,13 @@
           </div>
         </div>
         <div>
+          <div class="flavor-results__list__price" style="background-color: #ef8727" id="hpr">
+            <span class="flavor-results__list__price-text"> 770₸ </span>
+            <span class="flavor-results__list__price-ds">
+              цена <br />
+              за пачку
+            </span>
+          </div>
           <div class="flavor-results__list__grid">
             <div v-for="stik in resultSticks" :key="stik.name" class="flavor-results__product">
               <guide-result-item :stik="stik" />
