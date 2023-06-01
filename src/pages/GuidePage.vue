@@ -114,14 +114,19 @@
           </div>
         </div>
       </div>
-      <div v-else class="flavor-results__list__grid">
-        <div v-for="stik in resultSticks" :key="stik.name" class="flavor-results__product">
-          <div class="flavor-results__product-top">
-            <img class="flavor-results__product-img" :src="stik.resultImage" />
+      <div v-else>
+        <div>
+          <div class="flavor-results__list__grid">
+            <div v-for="stik in resultFiit" :key="stik.name" class="flavor-results__product">
+              <guide-result-item :stik="stik" />
+            </div>
           </div>
-          <div class="flavor-results__product-bottom">
-            <img class="flavor-results__product-icon" :src="stik.resultIcon" />
-            <span class="flavor-results__product-taste">{{ stik.resultText }}</span>
+        </div>
+        <div>
+          <div class="flavor-results__list__grid">
+            <div v-for="stik in resultSticks" :key="stik.name" class="flavor-results__product">
+              <guide-result-item :stik="stik" />
+            </div>
           </div>
         </div>
         <guide-button
@@ -143,6 +148,7 @@ import GuideButtonsBlock from '@/components/GuideButtonsBlock.vue';
 import GuideSection from '@/components/GuideSection.vue';
 import GuideSectionTitle from '@/components/GuideSectionTitle.vue';
 import GuideButton from '@/components/UI/GuideButton.vue';
+import GuideResultItem from '@/components/GuideResultItem.vue';
 
 export default {
   data() {
@@ -383,7 +389,7 @@ export default {
       },
     };
   },
-  components: { GuideSection, GuideButtonsBlock, GuideButton, GuideSectionTitle },
+  components: { GuideSection, GuideButtonsBlock, GuideButton, GuideSectionTitle, GuideResultItem },
   computed: {
     dotComments() {
       return this.additionSections.taste.dots.filter((item) => item.type === 'dot');
@@ -525,9 +531,12 @@ export default {
           .filter((item) =>
             data[item].aroma.some((item) => this.sections.aroma.values.includes(item)),
           );
-        // console.log(filteredData);
-        filteredData.forEach((item) => {
-          // console.log(data[item].name);
+        const fiitData = filteredData.filter((item) => data[item].stiks === 'Fiit');
+        const heetsData = filteredData.filter((item) => data[item].stiks === 'Heets');
+        fiitData.forEach((item) => {
+          this.resultFiit.push(data[item]);
+        });
+        heetsData.forEach((item) => {
           this.resultSticks.push(data[item]);
         });
         this.result = true;
