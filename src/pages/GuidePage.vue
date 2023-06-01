@@ -361,15 +361,16 @@ export default {
   methods: {
     onButtonClick(event) {
       // console.log(event);
-      this.changeButton(event, 'changeStiks', this.sections.stiks);
-      this.changeButton(event, 'changeMentol', this.sections.mentol);
-      this.changeButton(event, 'changeCapsule', this.additionSections.capsule);
-      this.enterButton(event, 'selectStiks');
-      this.enterButton(event, 'selectMentol');
-      this.changeSectionButton(event, 'changeStiksSection');
-      this.changeSectionButton(event, 'changeMentolSection');
-      this.changeAromaButton(event);
-      this.findButtonClick(event);
+      this.onChangeButtonClick(event, 'changeStiks', this.sections.stiks);
+      this.onChangeButtonClick(event, 'changeMentol', this.sections.mentol);
+      this.onChangeButtonClick(event, 'changeCapsule', this.additionSections.capsule);
+      this.onEnterButtonClick(event, 'selectStiks');
+      this.onEnterButtonClick(event, 'selectMentol');
+      this.onChangeSectionButtonClick(event, 'changeStiksSection');
+      this.onChangeSectionButtonClick(event, 'changeMentolSection');
+      this.onChangeAromaButtonClick(event);
+      this.onFindButtonClick(event);
+      this.onCancelButtonClick(event);
     },
     onDotClick(event) {
       const id = +event.target.dataset?.id;
@@ -379,7 +380,6 @@ export default {
       if (dot) {
         const savedDotActive = dot.active;
         for (const key in this.additionSections.taste.dots) {
-          console.log(this.additionSections.taste.dots[key]);
           this.additionSections.taste.dots[key].active = false;
           this.additionSections.taste.dots[key].selected = false;
           if (key < id - 1) this.additionSections.taste.dots[key].selected = true;
@@ -393,7 +393,7 @@ export default {
         }
       }
     },
-    changeButton(event, eventType, object) {
+    onChangeButtonClick(event, eventType, object) {
       if (event.type === eventType) {
         object.buttons.forEach((item) => (item.active = false));
         object.buttons.find((item) => item.text === event.text).active = true;
@@ -403,7 +403,7 @@ export default {
         object.value = event.text;
       }
     },
-    changeAromaButton(event) {
+    onChangeAromaButtonClick(event) {
       if (event.type === 'selectAroma') {
         const button = this.sections.aroma.buttons.find((item) => item.text === event.text);
         if (button) {
@@ -419,7 +419,7 @@ export default {
         this.additionSections.active = this.sections.aroma.values.length > 0;
       }
     },
-    enterButton(event, eventType) {
+    onEnterButtonClick(event, eventType) {
       if (event.type === eventType && event.active) {
         const oldSection = eventType === 'selectStiks' ? this.sections.stiks : this.sections.mentol;
         const newSection = eventType === 'selectStiks' ? this.sections.mentol : this.sections.aroma;
@@ -439,7 +439,7 @@ export default {
         }
       }
     },
-    changeSectionButton(event, eventType) {
+    onChangeSectionButtonClick(event, eventType) {
       if (event.type === eventType) {
         this.sections.aroma.active = false;
         this.sections.aroma.selected = false;
@@ -462,7 +462,12 @@ export default {
         this.stepText = eventType === 'changeStiksSection' ? 'Табачные стики' : 'Ментол';
       }
     },
-    findButtonClick(event) {
+    onCancelButtonClick(event) {
+      if (event.type === 'cancelTaste') {
+        console.log(event);
+      }
+    },
+    onFindButtonClick(event) {
       if (event.type === 'findSticks' && event.active) {
         console.log('find!!!');
         console.log(this.sections.stiks.value);
