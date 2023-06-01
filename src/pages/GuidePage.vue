@@ -116,6 +116,7 @@
   </div>
 </template>
 <script>
+import { data } from '@/data/data';
 import { stiksImage, mentolImage, aromaImage, capsuleImage, tasteImage } from '@/assets/images';
 import GuideButtonsBlock from '@/components/GuideButtonsBlock.vue';
 import GuideSection from '@/components/GuideSection.vue';
@@ -473,10 +474,22 @@ export default {
     },
     onFindButtonClick(event) {
       if (event.type === 'findSticks' && event.active) {
-        console.log('find!!!');
-        console.log(this.sections.stiks.value);
-        console.log(this.sections.mentol.value);
-        console.log(this.sections.aroma.values);
+        // console.log(data);
+        const filteredData = Object.keys(data)
+          .filter((item) =>
+            this.sections.stiks.value === 'Все'
+              ? item
+              : data[item].stiks === this.sections.stiks.value,
+          )
+          .filter((item) =>
+            this.sections.mentol.value === 'Не важно'
+              ? item
+              : data[item].mentol === this.sections.mentol.value,
+          )
+          .filter((item) =>
+            data[item].aroma.some((item) => this.sections.aroma.values.includes(item)),
+          );
+        console.log(filteredData);
       }
     },
   },
