@@ -1,117 +1,120 @@
 <template>
   <div class="kam-112908-page">
     <div class="kam-112908-page__container">
-      <div class="kam-112908-page__title">Выберите параметры</div>
-      <div class="kam-112908-page__text">
-        <span class="kam-112908-page__step"
-          >Шаг <span class="kam-112908-page__step-number">{{ stepNumber }}</span
-          >: </span
-        ><span class="kam-112908-page__step-content">{{ stepText }}</span>
-      </div>
-      <guide-section
-        v-for="(section, key) in sections"
-        :key="section"
-        :modifier="key"
-        :image="section.image"
-        :title="section.title"
-        :text="section.text"
-        :class="{
-          'kam-112908-section_active': section.active,
-          'kam-112908-section_selected': section.selected,
-        }"
-        class="kam-112908-section_type_main"
-      >
-        <guide-buttons-block :buttons="section.buttons" @buttonClick="onButtonClick" />
-        <guide-button
-          v-if="section.firstButton"
-          :color="section.firstButton.color"
-          :text="section.firstButton.text"
-          :type="section.firstButton.type"
-          :active="section.firstButton.active"
-          :selected="section.firstButton.selected"
-          @buttonClick="onButtonClick"
-        />
-      </guide-section>
-      <guide-button
-        :color="findButton.color"
-        :text="findButton.text"
-        :type="findButton.type"
-        :active="findButton.active"
-        @buttonClick="onButtonClick"
-        class="kam-112908-button_type_main"
-      />
-      <div
-        class="kam-112908-section kam-112908-section_type_addition"
-        :class="[
-          { 'kam-112908-section_hidden': additionSections.hidden },
-          { 'kam-112908-section_active': additionSections.active },
-          { 'kam-112908-section_selected': additionSections.active },
-        ]"
-      >
-        <div class="kam-112908-section__mobile-title">
-          Вы можете указать дополнительные параметры для более точной рекомендации:
+      <div v-if="!result">
+        <div class="kam-112908-page__title">Выберите параметры</div>
+        <div class="kam-112908-page__text">
+          <span class="kam-112908-page__step"
+            >Шаг <span class="kam-112908-page__step-number">{{ stepNumber }}</span
+            >: </span
+          ><span class="kam-112908-page__step-content">{{ stepText }}</span>
         </div>
-        <div class="kam-112908-section__container">
-          <guide-section-title
-            :image="additionSections.capsule.image"
-            :title="additionSections.capsule.title"
-            :text="additionSections.capsule.text"
-          />
-          <guide-buttons-block
-            :buttons="additionSections.capsule.buttons"
+        <guide-section
+          v-for="(section, key) in sections"
+          :key="section"
+          :modifier="key"
+          :image="section.image"
+          :title="section.title"
+          :text="section.text"
+          :class="{
+            'kam-112908-section_active': section.active,
+            'kam-112908-section_selected': section.selected,
+          }"
+          class="kam-112908-section_type_main"
+        >
+          <guide-buttons-block :buttons="section.buttons" @buttonClick="onButtonClick" />
+          <guide-button
+            v-if="section.firstButton"
+            :color="section.firstButton.color"
+            :text="section.firstButton.text"
+            :type="section.firstButton.type"
+            :active="section.firstButton.active"
+            :selected="section.firstButton.selected"
             @buttonClick="onButtonClick"
           />
-        </div>
-        <div class="kam-112908-section__container">
-          <guide-section-title
-            :image="additionSections.taste.image"
-            :title="additionSections.taste.title"
-            :text="additionSections.taste.text"
-          />
-          <div class="kam-112908-section__content-block">
-            <div class="kam-112908-section__line-block">
-              <div
-                v-for="dot in additionSections.taste.dots"
-                :key="dot.id"
-                :class="[
-                  { 'kam-112908-section__dot': dot.type === 'dot' },
-                  { 'kam-112908-section__line': dot.type === 'line' },
-                  { 'kam-112908-section__dot_active': dot.type === 'dot' && dot.active },
-                  { 'kam-112908-section__dot_selected': dot.type === 'dot' && dot.selected },
-                  { 'kam-112908-section__line_selected': dot.type === 'line' && dot.selected },
-                  dot.class,
-                ]"
-                :data-type="dot.type"
-                :data-value="dot.text"
-                :data-id="dot.id"
-                @click="onDotClick"
-              ></div>
-            </div>
-            <div class="kam-112908-section__comments-block">
-              <div
-                v-for="dot in dotComments"
-                :key="dot.id"
-                class="kam-112908-section__coment"
-                :class="`kam-112908-section__coment_position_${dot.modifier}`"
-                :data-type="dot.type"
-                :data-value="dot.text"
-                :data-id="dot.id"
-                @click="onDotClick"
-              >
-                {{ dot.text }}
+        </guide-section>
+        <guide-button
+          :color="findButton.color"
+          :text="findButton.text"
+          :type="findButton.type"
+          :active="findButton.active"
+          @buttonClick="onButtonClick"
+          class="kam-112908-button_type_main"
+        />
+        <div
+          class="kam-112908-section kam-112908-section_type_addition"
+          :class="[
+            { 'kam-112908-section_hidden': additionSections.hidden },
+            { 'kam-112908-section_active': additionSections.active },
+            { 'kam-112908-section_selected': additionSections.active },
+          ]"
+        >
+          <div class="kam-112908-section__mobile-title">
+            Вы можете указать дополнительные параметры для более точной рекомендации:
+          </div>
+          <div class="kam-112908-section__container">
+            <guide-section-title
+              :image="additionSections.capsule.image"
+              :title="additionSections.capsule.title"
+              :text="additionSections.capsule.text"
+            />
+            <guide-buttons-block
+              :buttons="additionSections.capsule.buttons"
+              @buttonClick="onButtonClick"
+            />
+          </div>
+          <div class="kam-112908-section__container">
+            <guide-section-title
+              :image="additionSections.taste.image"
+              :title="additionSections.taste.title"
+              :text="additionSections.taste.text"
+            />
+            <div class="kam-112908-section__content-block">
+              <div class="kam-112908-section__line-block">
+                <div
+                  v-for="dot in additionSections.taste.dots"
+                  :key="dot.id"
+                  :class="[
+                    { 'kam-112908-section__dot': dot.type === 'dot' },
+                    { 'kam-112908-section__line': dot.type === 'line' },
+                    { 'kam-112908-section__dot_active': dot.type === 'dot' && dot.active },
+                    { 'kam-112908-section__dot_selected': dot.type === 'dot' && dot.selected },
+                    { 'kam-112908-section__line_selected': dot.type === 'line' && dot.selected },
+                    dot.class,
+                  ]"
+                  :data-type="dot.type"
+                  :data-value="dot.text"
+                  :data-id="dot.id"
+                  @click="onDotClick"
+                ></div>
+              </div>
+              <div class="kam-112908-section__comments-block">
+                <div
+                  v-for="dot in dotComments"
+                  :key="dot.id"
+                  class="kam-112908-section__coment"
+                  :class="`kam-112908-section__coment_position_${dot.modifier}`"
+                  :data-type="dot.type"
+                  :data-value="dot.text"
+                  :data-id="dot.id"
+                  @click="onDotClick"
+                >
+                  {{ dot.text }}
+                </div>
               </div>
             </div>
+            <guide-button
+              :color="additionSections.taste.firstButton.color"
+              :text="additionSections.taste.firstButton.text"
+              :type="additionSections.taste.firstButton.type"
+              :active="additionSections.taste.firstButton.active"
+              @buttonClick="onButtonClick"
+              class="kam-112908-button_type_cancel"
+            />
           </div>
-          <guide-button
-            :color="additionSections.taste.firstButton.color"
-            :text="additionSections.taste.firstButton.text"
-            :type="additionSections.taste.firstButton.type"
-            :active="additionSections.taste.firstButton.active"
-            @buttonClick="onButtonClick"
-            class="kam-112908-button_type_cancel"
-          />
         </div>
       </div>
+      <div v-else></div>
     </div>
   </div>
 </template>
@@ -351,6 +354,7 @@ export default {
         type: 'findSticks',
         active: false,
       },
+      result: false,
     };
   },
   components: { GuideSection, GuideButtonsBlock, GuideButton, GuideSectionTitle },
@@ -437,6 +441,8 @@ export default {
 
         if (eventType === 'selectStiks') {
           this.additionSections.hidden = !(this.sections.stiks.value === 'Heets');
+        } else {
+          this.findButton.active = this.sections.aroma.values.length > 0;
         }
       }
     },
@@ -461,6 +467,7 @@ export default {
         }
         this.stepNumber = eventType === 'changeStiksSection' ? '1' : '2';
         this.stepText = eventType === 'changeStiksSection' ? 'Табачные стики' : 'Ментол';
+        this.findButton.active = false;
       }
     },
     onCancelButtonClick(event) {
