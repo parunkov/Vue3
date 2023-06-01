@@ -115,7 +115,7 @@
         </div>
       </div>
       <div v-else>
-        <div>
+        <div v-if="resultFiit.length > 0">
           <div class="flavor-results__list__price" style="background-color: #1253a1" id="fpr">
             <span class="flavor-results__list__price-text"> 740₸ </span>
             <span class="flavor-results__list__price-ds">
@@ -129,7 +129,7 @@
             </div>
           </div>
         </div>
-        <div>
+        <div v-if="resultSticks.length > 0">
           <div class="flavor-results__list__price" style="background-color: #ef8727" id="hpr">
             <span class="flavor-results__list__price-text"> 770₸ </span>
             <span class="flavor-results__list__price-ds">
