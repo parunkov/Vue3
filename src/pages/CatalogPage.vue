@@ -3,14 +3,13 @@
     <div class="catalog-main">
       <div class="catalog-main__title">Каталог</div>
       <div class="catalog-main__grid">
-        <div v-for="card in cards" :key="card.id" class="catalog-main__item">
-          {{ card.title }}
-        </div>
+        <catalog-item v-for="card in cards" :key="card.id" :card="card" />
       </div>
     </div>
   </div>
 </template>
 <script>
+import CatalogItem from '@/components/CatalogItem.vue';
 import catalogData from '@/parsing/catalogData.json';
 console.log(catalogData);
 
@@ -20,6 +19,7 @@ export default {
       cards: catalogData,
     };
   },
+  components: { CatalogItem },
 };
 </script>
 <style lang="scss" scoped>
