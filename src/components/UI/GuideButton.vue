@@ -31,5 +31,3 @@ export default {
   },
 };
 </script>
-
-<!-- :class="{'kam-112908-button_active': active}" -->

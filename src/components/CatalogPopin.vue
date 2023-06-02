@@ -12,13 +12,19 @@
         <div class="kam-112908-popin__text">Выберите один параметр</div>
       </div>
       <div class="kam-112908-popin__buttons-block"></div>
-      <div class="kam-112908-button kam-112908-button_color_first kam-112908-button_active">
-        Начать
-      </div>
+      <guide-button
+        color="first"
+        :text="firstButton.text"
+        :active="firstButton.active"
+        type="popin"
+        @buttonClick="onButtonClick"
+      />
     </div>
   </div>
 </template>
 <script>
+import GuideButton from './UI/GuideButton.vue';
+
 export default {
   data() {
     return {
@@ -28,12 +34,12 @@ export default {
       headerText: '',
       isArrow: false,
       firstButton: {
-        color: 'first',
         text: 'Начать',
-        active: false,
+        active: true,
       },
     };
   },
+  components: { GuideButton },
 };
 </script>
 <style></style>
