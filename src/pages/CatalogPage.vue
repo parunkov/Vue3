@@ -6,18 +6,28 @@
         <catalog-item v-for="card in cards" :key="card.id" :card="card" />
       </div>
     </div>
-    <CatalogPopin />
+    <catalog-popin />
   </div>
 </template>
 <script>
+import { provide, reactive } from 'vue';
 import CatalogItem from '@/components/CatalogItem.vue';
 import CatalogPopin from '@/components/CatalogPopin.vue';
 import catalogData from '@/parsing/catalogData.json';
 
 export default {
+  setup() {
+    const filters = reactive({});
+    const updateFilters = (newFilters) => {
+      filters.value = newFilters;
+    };
+    provide('filters', filters);
+    provide('updateFilters', updateFilters);
+  },
   data() {
     return {
       cards: catalogData,
+      catalogFilters: {},
     };
   },
   components: { CatalogItem, CatalogPopin },

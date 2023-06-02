@@ -11,7 +11,7 @@
         <div class="kam-112908-popin__title">Табачные стики</div>
         <div class="kam-112908-popin__text">Выберите один параметр</div>
       </div>
-      <div class="kam-112908-popin__buttons-block"></div>
+      <StiksButtonBlock />
       <guide-button
         color="first"
         :text="firstButton.text"
@@ -23,9 +23,19 @@
   </div>
 </template>
 <script>
+import { inject } from 'vue';
 import GuideButton from './UI/GuideButton.vue';
+import StiksButtonBlock from '@/components/StksButtonBlock.vue';
 
 export default {
+  setup() {
+    const filters = inject('filters');
+    const updateFilters = inject('updateFilters');
+    return {
+      filters,
+      updateFilters,
+    };
+  },
   data() {
     return {
       stage: 'begin',
@@ -39,7 +49,14 @@ export default {
       },
     };
   },
-  components: { GuideButton },
+  components: { GuideButton, StiksButtonBlock },
+  methods: {
+    onButtonClick() {
+      console.log(2222);
+      console.log(this.filters);
+      this.updateFilters({ stiks: 'aaaa' });
+    },
+  },
 };
 </script>
 <style></style>
