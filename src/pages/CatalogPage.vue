@@ -36,6 +36,7 @@ export default {
   padding: 0 15px;
   margin: 0 auto;
   padding-top: 30px;
+  padding-bottom: 30px;
   @media (max-width: 924px) {
     max-width: 100%;
   }
@@ -54,5 +55,21 @@ export default {
   font-size: 30px;
   font-family: 'Iqos-Bold', sans-serif;
   font-weight: 700;
+}
+.catalog-main__grid {
+  text-align: left;
+  letter-spacing: 1.2px;
+  color: #34303d;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 70px 15px;
+  grid-auto-rows: auto;
+  width: 100%;
 }
 </style>
