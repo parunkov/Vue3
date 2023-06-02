@@ -6,12 +6,13 @@
         <catalog-item v-for="card in cards" :key="card.id" :card="card" />
       </div>
     </div>
+    <CatalogPopin />
   </div>
 </template>
 <script>
 import CatalogItem from '@/components/CatalogItem.vue';
+import CatalogPopin from '@/components/CatalogPopin.vue';
 import catalogData from '@/parsing/catalogData.json';
-console.log(catalogData);
 
 export default {
   data() {
@@ -19,7 +20,7 @@ export default {
       cards: catalogData,
     };
   },
-  components: { CatalogItem },
+  components: { CatalogItem, CatalogPopin },
 };
 </script>
 <style lang="scss" scoped>
