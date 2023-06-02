@@ -93,6 +93,9 @@ export default {
   flex: auto;
   outline: 0;
   text-decoration: none;
+  @media (max-width: 991px) {
+    font-size: 18px;
+  }
 }
 .catalog-main__item-aromatic-flavor {
   text-align: left;
@@ -162,6 +165,9 @@ export default {
   display: block;
   font-size: 18px;
   color: #34303d;
+  @media (max-width: 991px) {
+    font-size: 16px;
+  }
 }
 .btn.black {
   letter-spacing: 1.2px;

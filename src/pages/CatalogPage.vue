@@ -71,5 +71,13 @@ export default {
   grid-gap: 70px 15px;
   grid-auto-rows: auto;
   width: 100%;
+  @media (max-width: 991px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px 10px;
+  }
+  @media (max-width: 669px) {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 15px 0;
+  }
 }
 </style>
