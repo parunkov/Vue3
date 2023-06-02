@@ -1,7 +1,7 @@
 <template>
   <div class="kam-112908-popin__buttons-block">
     <guide-button
-      v-for="button in buttons"
+      v-for="button in currentButtons"
       :key="button.text"
       color="second"
       :text="button.text"
@@ -19,10 +19,18 @@ export default {
     buttons: Array,
     type: String,
   },
+  data() {
+    return {
+      currentButtons: this.buttons,
+    };
+  },
   components: { GuideButton },
   methods: {
     onButtonClick(event) {
-      console.log('1 - ', event);
+      this.currentButtons.forEach((item) => {
+        item.active = false;
+      });
+      this.currentButtons.find((item) => item.text === event.text).active = true;
       this.$emit('changeFilters', event);
     },
   },

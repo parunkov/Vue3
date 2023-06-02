@@ -23,19 +23,19 @@
   </div>
 </template>
 <script>
-import { inject } from 'vue';
+// import { inject } from 'vue';
 import GuideButton from './UI/GuideButton.vue';
 import StiksButtonBlock from '@/components/StksButtonBlock.vue';
 
 export default {
-  setup() {
-    const filters = inject('filters');
-    const updateFilters = inject('updateFilters');
-    return {
-      filters,
-      updateFilters,
-    };
-  },
+  // setup() {
+  //   const filters = inject('filters');
+  //   const updateFilters = inject('updateFilters');
+  //   return {
+  //     filters,
+  //     updateFilters,
+  //   };
+  // },
   data() {
     return {
       stage: 'begin',
@@ -50,13 +50,13 @@ export default {
     };
   },
   components: { GuideButton, StiksButtonBlock },
-  methods: {
-    onButtonClick() {
-      console.log(2222);
-      console.log(this.filters);
-      this.updateFilters({ stiks: 'aaaa' });
-    },
-  },
+  // methods: {
+  //   onButtonClick() {
+  //     console.log(2222);
+  //     console.log(this.filters);
+  //     this.updateFilters({ stiks: 'aaaa' });
+  //   },
+  // },
 };
 </script>
 <style></style>

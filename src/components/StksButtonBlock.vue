@@ -6,9 +6,18 @@
   />
 </template>
 <script>
+import { inject } from 'vue';
 import PopinButtonsBlock from './PopinButtonsBlock.vue';
 
 export default {
+  setup() {
+    const filters = inject('filters');
+    const updateFilters = inject('updateFilters');
+    return {
+      filters,
+      updateFilters,
+    };
+  },
   data() {
     return {
       buttons: [
@@ -30,8 +39,9 @@ export default {
   components: { PopinButtonsBlock },
   methods: {
     onChangeFilters(event) {
-      console.log('2 - ', event);
-      console.log(2222);
+      const newFilters = JSON.parse(JSON.stringify(this.filters));
+      newFilters.sticks = event.text;
+      this.updateFilters(newFilters);
     },
   },
 };
