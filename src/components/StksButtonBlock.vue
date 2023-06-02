@@ -20,28 +20,16 @@ export default {
   },
   data() {
     return {
-      buttons: [
-        {
-          text: 'Все',
-          active: false,
-        },
-        {
-          text: 'Heets',
-          active: false,
-        },
-        {
-          text: 'Fiit',
-          active: false,
-        },
-      ],
+      buttons: ['Все', 'Heets', 'Fiit'],
     };
   },
   components: { PopinButtonsBlock },
   methods: {
     onChangeFilters(event) {
       const newFilters = JSON.parse(JSON.stringify(this.filters));
-      newFilters.sticks = event.text;
+      newFilters.stiks = event.text;
       this.updateFilters(newFilters);
+      // console.log(this.filters.value.stiks);
     },
   },
 };

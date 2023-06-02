@@ -34,5 +34,9 @@ export default {
       this.$emit('changeFilters', event);
     },
   },
+  created() {
+    const newButtons = this.buttons.map((item) => ({ text: item, active: false }));
+    this.currentButtons = newButtons;
+  },
 };
 </script>
