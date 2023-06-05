@@ -236,4 +236,23 @@ const data = {
   },
 };
 
-export { data };
+const popinStagesData = {
+  begin: {
+    headerTitle: 'Гид по вкусам',
+    headerText: 'Палитра вкусов, собранная специально для вас',
+    firstButton: {
+      text: 'Начать',
+      active: true,
+    },
+  },
+  stiks: {
+    headerTitle: 'Табачные стики',
+    headerText: 'Выберите один параметр',
+    firstButton: {
+      text: 'Продолжить',
+      active: false,
+    },
+  },
+};
+
+export { data, popinStagesData };

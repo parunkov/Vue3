@@ -1,19 +1,19 @@
 <template>
   <div class="kam-112908-popin" id="kameleoonElement-112908">
     <div class="kam-112908-popin__section" :class="`kam-112908-popin__section_content_${stage}`">
-      <div class="kam-112908-popin__arrow" v-html="popinArrow"></div>
+      <div class="kam-112908-popin__arrow" v-html="popinArrow" @click="onArrowClick"></div>
       <div class="kam-112908-popin__close-button" v-html="popinCross"></div>
       <div v-if="stage === 'begin'" v-html="popinImage"></div>
       <div class="kam-112908-popin__section kam-112908-popin__section_content_stiks">
         <div class="kam-112908-popin__title-block">
-          <div class="kam-112908-popin__title">{{ headerTitle }}</div>
-          <div class="kam-112908-popin__text">{{ headerText }}</div>
+          <div class="kam-112908-popin__title">{{ stageData.headerTitle }}</div>
+          <div class="kam-112908-popin__text">{{ stageData.headerText }}</div>
         </div>
-        <StiksButtonBlock v-if="satge === 'stiks'" />
+        <StiksButtonBlock v-if="stage === 'stiks'" />
         <guide-button
           color="first"
-          :text="firstButton.text"
-          :active="firstButton.active"
+          :text="stageData.firstButton.text"
+          :active="stageData.firstButton.active"
           type="popin"
           @buttonClick="onButtonClick"
         />
@@ -25,19 +25,14 @@
 import GuideButton from './UI/GuideButton.vue';
 import StiksButtonBlock from '@/components/StksButtonBlock.vue';
 import { popinImage, popinArrow, popinCross } from '@/assets/images';
+import { popinStagesData } from '@/data/data';
 
 export default {
   data() {
     return {
       stage: 'begin',
-      isHeader: false,
-      headerTitle: 'Гид по вкусам',
-      headerText: 'Палитра вкусов, собранная специально для вас',
-      isArrow: false,
-      firstButton: {
-        text: 'Начать',
-        active: true,
-      },
+      stages: ['begin', 'stiks'],
+      stageData: {},
       popinImage,
       popinArrow,
       popinCross,
@@ -45,7 +40,16 @@ export default {
   },
   components: { GuideButton, StiksButtonBlock },
   methods: {
-    onButtonClick() {},
+    onButtonClick() {
+      if (this.stageData.firstButton.active) {
+        const currentIndex = this.stages.indexOf(this.stage);
+        this.stage = this.stages[currentIndex + 1];
+        this.stageData = popinStagesData[this.stage];
+      }
+    },
+  },
+  created() {
+    this.stageData = popinStagesData.begin;
   },
 };
 </script>
