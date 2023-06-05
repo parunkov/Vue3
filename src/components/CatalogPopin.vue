@@ -26,16 +26,23 @@ import GuideButton from './UI/GuideButton.vue';
 import StiksButtonBlock from '@/components/StksButtonBlock.vue';
 import { popinImage, popinArrow, popinCross } from '@/assets/images';
 import { popinStagesData } from '@/data/data';
+// import { inject } from 'vue';
 
 export default {
+  // setup() {
+  //   const filters = inject('filters');
+  //   console.log(filters);
+  // },
   data() {
     return {
       stage: 'begin',
       stages: ['begin', 'stiks'],
+      buttonActive: true,
       stageData: {},
       popinImage,
       popinArrow,
       popinCross,
+      currentFilters: {},
     };
   },
   components: { GuideButton, StiksButtonBlock },
@@ -45,16 +52,21 @@ export default {
         const currentIndex = this.stages.indexOf(this.stage);
         this.stage = this.stages[currentIndex + 1];
         this.stageData = popinStagesData[this.stage];
+        // console.log(this.currentFilters.stiks);
+        // this.buttonActive = this.stageData.firstButton.active;
       }
     },
     onArrowClick() {
       const currentIndex = this.stages.indexOf(this.stage);
       this.stage = this.stages[currentIndex - 1];
       this.stageData = popinStagesData[this.stage];
+      // console.log(this.currentFilters);
+      // this.stageData.firstButton.active = this.buttonActive;
     },
   },
   created() {
     this.stageData = popinStagesData.begin;
+    this.currentFilters = this.filters;
   },
 };
 </script>
