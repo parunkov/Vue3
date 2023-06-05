@@ -47,6 +47,11 @@ export default {
         this.stageData = popinStagesData[this.stage];
       }
     },
+    onArrowClick() {
+      const currentIndex = this.stages.indexOf(this.stage);
+      this.stage = this.stages[currentIndex - 1];
+      this.stageData = popinStagesData[this.stage];
+    },
   },
   created() {
     this.stageData = popinStagesData.begin;

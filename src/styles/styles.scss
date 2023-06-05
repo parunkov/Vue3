@@ -706,6 +706,7 @@
         top: 1px;
         left: -4px;
         cursor: pointer;
+        z-index: 1;
         svg {
             width: 25px;
             height: 25px;
@@ -719,6 +720,7 @@
         top: -1px;
         right: -5px;
         cursor: pointer;
+        z-index: 1;
         svg {
             width: 25px;
             height: 25px;
