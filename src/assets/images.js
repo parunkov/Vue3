@@ -62,4 +62,52 @@ const tasteImage = `
 </svg>
 `;
 
-export { stiksImage, mentolImage, aromaImage, capsuleImage, tasteImage };
+const popinImage = `
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_101_311" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="3" y="20" width="59" height="41">
+<path d="M32.0265 58.7231L7.89673 54C4.81307 43.3426 3.27124 37.8833 3.27124 37.6221C3.27124 37.3609 3.75968 31.8115 4.73657 20.9739L10.3926 23L17.0732 26.6057L20.7762 29.5V40L24.3604 47.0852L30 53.321H32.0265L34.7765 52.2134L41 45.2611L43.7073 36.3439V32L43.2762 28.9426L46.2144 20.9739L54.3669 23C59.0222 34.0057 61.3499 39.7921 61.3499 40.3591C61.3499 40.9262 55.1213 47.6869 42.6641 60.6414L32.0265 58.7231Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_101_311)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M36.9557 37.2088C41.2095 32.1393 47.4631 29.7522 53.5393 30.2586C55.1175 36.1615 53.8542 42.7419 49.5967 47.8158C45.1492 53.116 38.5158 55.4841 32.1844 54.6791C25.6611 55.4683 19.1636 53.208 14.7201 48.124C10.2987 42.8491 8.9842 36.4115 10.4099 30.5964C13.3881 30.1922 16.383 30.535 19.1619 31.566C22.153 32.6758 24.893 34.5825 27.0967 37.2088C28.8402 39.2866 30.0818 41.6167 30.8328 44.0496L32.0268 47.9177L33.2201 44.0494C33.9706 41.6166 35.2123 39.2865 36.9557 37.2088Z" stroke="#34303D" stroke-width="2.49843"/>
+</g>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M31.8301 15.8985C35.3445 17.5521 38.2924 20.1627 40.3772 23.3947C42.5198 26.7164 43.75 30.6943 43.75 34.9658C43.75 39.2204 42.5295 43.1836 40.4254 46.5079C38.3609 49.7696 35.4462 52.4167 32.0006 54.1178C28.5549 52.4167 25.64 49.77 23.5753 46.5086C21.4707 43.1842 20.25 39.2207 20.25 34.9658C20.25 30.7471 21.45 26.8149 23.5216 23.508C25.5555 20.2612 28.429 17.6168 31.8301 15.8985Z" stroke="#34303D" stroke-width="2.5"/>
+<path d="M32 22.5V54" stroke="#34303D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M26.5 38.5L32 45.2611" stroke="#34303D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M26.5 29.5L32 36.2611" stroke="#34303D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M37.5266 38.5L32.0266 45.2611" stroke="#34303D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M37.5266 29.5L32.0266 36.2611" stroke="#34303D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M47.0743 24.1088C45.2687 19.2598 41.8042 15.2633 37.4124 12.7551" stroke="#00D1D2" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M32 12C33.1046 12 34 11.1046 34 10C34 8.89543 33.1046 8 32 8C30.8954 8 30 8.89543 30 10C30 11.1046 30.8954 12 32 12Z" fill="#00D1D2"/>
+</svg>       
+`;
+
+const popinArrow = `
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M11.7071 4.29289C12.0976 4.68342 12.0976 5.31658 11.7071 5.70711L6.41421 11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H6.41421L11.7071 18.2929C12.0976 18.6834 12.0976 19.3166 11.7071 19.7071C11.3166 20.0976 10.6834 20.0976 10.2929 19.7071L3.29289 12.7071C3.10536 12.5196 3 12.2652 3 12C3 11.7348 3.10536 11.4804 3.29289 11.2929L10.2929 4.29289C10.6834 3.90237 11.3166 3.90237 11.7071 4.29289Z" fill="#34303D"/>
+</svg>
+`;
+
+const popinCross = `
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1_16517)">
+<path d="M22 10L10 22" stroke="#34303D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M22 22L10 10" stroke="#34303D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_1_16517">
+<rect width="21.3333" height="21.3333" fill="white" transform="translate(5.33325 5.33333)"/>
+</clipPath>
+</defs>
+</svg>    
+`;
+
+export {
+  stiksImage,
+  mentolImage,
+  aromaImage,
+  capsuleImage,
+  tasteImage,
+  popinImage,
+  popinArrow,
+  popinCross,
+};
