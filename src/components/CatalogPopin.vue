@@ -1,23 +1,26 @@
 <template>
   <div class="kam-112908-popin" id="kameleoonElement-112908">
+    <div
+      class="kam-112908-popin__arrow"
+      v-html="popinArrow"
+      @click="onArrowClick"
+      :class="`kam-112908-popin__arrow_content_${stage}`"
+    ></div>
+    <div class="kam-112908-popin__close-button" v-html="popinCross"></div>
     <div class="kam-112908-popin__section" :class="`kam-112908-popin__section_content_${stage}`">
-      <div class="kam-112908-popin__arrow" v-html="popinArrow" @click="onArrowClick"></div>
-      <div class="kam-112908-popin__close-button" v-html="popinCross"></div>
-      <div v-if="stage === 'begin'" v-html="popinImage"></div>
-      <div class="kam-112908-popin__section kam-112908-popin__section_content_stiks">
-        <div class="kam-112908-popin__title-block">
-          <div class="kam-112908-popin__title">{{ stageData.headerTitle }}</div>
-          <div class="kam-112908-popin__text">{{ stageData.headerText }}</div>
-        </div>
-        <StiksButtonBlock v-if="stage === 'stiks'" />
-        <guide-button
-          color="first"
-          :text="stageData.firstButton.text"
-          :active="stageData.firstButton.active"
-          type="popin"
-          @buttonClick="onButtonClick"
-        />
+      <div v-if="stage === 'begin'" v-html="popinImage" class="kam-112908-popin__image"></div>
+      <div class="kam-112908-popin__title-block">
+        <div class="kam-112908-popin__title">{{ stageData.headerTitle }}</div>
+        <div class="kam-112908-popin__text">{{ stageData.headerText }}</div>
       </div>
+      <StiksButtonBlock v-if="stage === 'stiks'" />
+      <guide-button
+        color="first"
+        :text="stageData.firstButton.text"
+        :active="stageData.firstButton.active"
+        type="popin"
+        @buttonClick="onButtonClick"
+      />
     </div>
   </div>
 </template>
