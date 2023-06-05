@@ -3,7 +3,7 @@
     :buttons="buttons"
     type="changeStiksFilter"
     @changeFilters="onChangeFilters"
-    :activeButton="this.filters.value?.stiks"
+    :activeButton="this.filters.value?.mentol"
   />
 </template>
 <script>
@@ -21,17 +21,18 @@ export default {
   },
   data() {
     return {
-      buttons: ['Все', 'Heets', 'Fiit'],
+      buttons: ['Все', 'С ментолом', 'Без ментола'],
     };
   },
   components: { PopinButtonsBlock },
   methods: {
     onChangeFilters(event) {
       const newFilters = JSON.parse(JSON.stringify(this.filters.value));
-      newFilters.stiks = event.text;
-      console.log('0-', newFilters);
+      newFilters.mentol = event.text;
       this.updateFilters(newFilters);
+      console.log('1-', newFilters);
       this.$emit('changeFilters');
+      console.log(this.filters.value);
     },
   },
 };

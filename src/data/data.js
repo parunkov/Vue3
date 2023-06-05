@@ -253,6 +253,14 @@ const popinStagesData = {
       active: false,
     },
   },
+  mentol: {
+    headerTitle: 'Ментол',
+    headerText: 'Выберите один параметр',
+    firstButton: {
+      text: 'Продолжить',
+      active: false,
+    },
+  },
 };
 
 export { data, popinStagesData };

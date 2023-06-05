@@ -13,7 +13,8 @@
         <div class="kam-112908-popin__title">{{ stageData.headerTitle }}</div>
         <div class="kam-112908-popin__text">{{ stageData.headerText }}</div>
       </div>
-      <StiksButtonBlock v-if="stage === 'stiks'" @changeFilters="onChangeFilters" />
+      <stiks-button-block v-if="stage === 'stiks'" @changeFilters="onChangeFilters" />
+      <mentol-buttons-block v-if="stage === 'mentol'" @changeFilters="onChangeFilters" />
       <guide-button
         color="first"
         :text="stageData.firstButton.text"
@@ -27,6 +28,7 @@
 <script>
 import GuideButton from './UI/GuideButton.vue';
 import StiksButtonBlock from '@/components/StksButtonBlock.vue';
+import MentolButtonsBlock from '@/components/MentolButtonsBlock.vue';
 import { popinImage, popinArrow, popinCross } from '@/assets/images';
 import { popinStagesData } from '@/data/data';
 import { inject } from 'vue';
@@ -39,7 +41,7 @@ export default {
   data() {
     return {
       stage: 'begin',
-      stages: ['begin', 'stiks'],
+      stages: ['begin', 'stiks', 'mentol'],
       buttonActive: true,
       stageData: {},
       popinImage,
@@ -47,7 +49,7 @@ export default {
       popinCross,
     };
   },
-  components: { GuideButton, StiksButtonBlock },
+  components: { GuideButton, StiksButtonBlock, MentolButtonsBlock },
   methods: {
     onButtonClick() {
       if (this.stageData.firstButton.active) {
@@ -63,6 +65,9 @@ export default {
       const currentIndex = this.stages.indexOf(this.stage);
       this.stage = this.stages[currentIndex - 1];
       this.stageData = popinStagesData[this.stage];
+      if (this.filters.value && this.filters.value[this.stage]) {
+        this.stageData.firstButton.active = true;
+      }
     },
     onChangeFilters() {
       if (this.filters.value[this.stage]) {
