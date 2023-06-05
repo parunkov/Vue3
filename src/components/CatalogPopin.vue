@@ -13,7 +13,7 @@
         <div class="kam-112908-popin__title">{{ stageData.headerTitle }}</div>
         <div class="kam-112908-popin__text">{{ stageData.headerText }}</div>
       </div>
-      <StiksButtonBlock v-if="stage === 'stiks'" />
+      <StiksButtonBlock v-if="stage === 'stiks'" @changeFilters="onChangeFilters" />
       <guide-button
         color="first"
         :text="stageData.firstButton.text"
@@ -29,13 +29,13 @@ import GuideButton from './UI/GuideButton.vue';
 import StiksButtonBlock from '@/components/StksButtonBlock.vue';
 import { popinImage, popinArrow, popinCross } from '@/assets/images';
 import { popinStagesData } from '@/data/data';
-// import { inject } from 'vue';
+import { inject } from 'vue';
 
 export default {
-  // setup() {
-  //   const filters = inject('filters');
-  //   console.log(filters);
-  // },
+  setup() {
+    const filters = inject('filters');
+    return { filters };
+  },
   data() {
     return {
       stage: 'begin',
@@ -45,7 +45,6 @@ export default {
       popinImage,
       popinArrow,
       popinCross,
-      currentFilters: {},
     };
   },
   components: { GuideButton, StiksButtonBlock },
@@ -55,16 +54,20 @@ export default {
         const currentIndex = this.stages.indexOf(this.stage);
         this.stage = this.stages[currentIndex + 1];
         this.stageData = popinStagesData[this.stage];
-        // console.log(this.currentFilters.stiks);
-        // this.buttonActive = this.stageData.firstButton.active;
+        if (this.filters.value && this.filters.value[this.stage]) {
+          this.stageData.firstButton.active = true;
+        }
       }
     },
     onArrowClick() {
       const currentIndex = this.stages.indexOf(this.stage);
       this.stage = this.stages[currentIndex - 1];
       this.stageData = popinStagesData[this.stage];
-      // console.log(this.currentFilters);
-      // this.stageData.firstButton.active = this.buttonActive;
+    },
+    onChangeFilters() {
+      if (this.filters.value[this.stage]) {
+        this.stageData.firstButton.active = true;
+      }
     },
   },
   created() {

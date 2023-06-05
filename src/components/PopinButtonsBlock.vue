@@ -18,6 +18,7 @@ export default {
   props: {
     buttons: Array,
     type: String,
+    activeButton: String,
   },
   data() {
     return {
@@ -37,6 +38,10 @@ export default {
   created() {
     const newButtons = this.buttons.map((item) => ({ text: item, active: false }));
     this.currentButtons = newButtons;
+    const activeButton = this.currentButtons.find((item) => item.text === this.activeButton);
+    if (activeButton) {
+      activeButton.active = true;
+    }
   },
 };
 </script>

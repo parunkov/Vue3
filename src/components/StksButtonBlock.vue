@@ -3,6 +3,7 @@
     :buttons="buttons"
     type="changeStiksFilter"
     @changeFilters="onChangeFilters"
+    :activeButton="this.filters.value?.stiks"
   />
 </template>
 <script>
@@ -29,7 +30,7 @@ export default {
       const newFilters = JSON.parse(JSON.stringify(this.filters));
       newFilters.stiks = event.text;
       this.updateFilters(newFilters);
-      // console.log(this.filters.value.stiks);
+      this.$emit('changeFilters');
     },
   },
 };
