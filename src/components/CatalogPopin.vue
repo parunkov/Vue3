@@ -15,7 +15,7 @@
       </div>
       <stiks-button-block v-if="stage === 'stiks'" @changeFilters="onChangeFilters" />
       <mentol-buttons-block v-if="stage === 'mentol'" @changeFilters="onChangeFilters" />
-      <aroma-buttons-block v-if="stage === 'aroma'" />
+      <aroma-buttons-block v-if="stage === 'aroma'" @changeFilters="onChangeFilters" />
       <guide-button
         color="first"
         :text="stageData.firstButton.text"
@@ -69,8 +69,15 @@ export default {
       }
     },
     onChangeFilters() {
-      if (this.filters[this.stage]) {
+      if (this.filters[this.stage] && typeof this.filters[this.stage] === 'string') {
         this.stageData.firstButton.active = true;
+      }
+      if (this.filters[this.stage] && typeof this.filters[this.stage] === 'object') {
+        if (this.filters[this.stage].length > 0) {
+          this.stageData.firstButton.active = true;
+        } else {
+          this.stageData.firstButton.active = false;
+        }
       }
     },
   },

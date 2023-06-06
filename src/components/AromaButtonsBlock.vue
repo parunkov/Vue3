@@ -3,9 +3,9 @@
     <guide-button
       v-for="button in buttons"
       :key="button.text"
-      color="second"
+      :color="button.color"
       :text="button.text"
-      :type="type"
+      type="changeAromaFilter"
       :active="button.active"
       @buttonClick="onButtonClick"
     />
@@ -13,8 +13,17 @@
 </template>
 <script>
 import GuideButton from './UI/GuideButton.vue';
+import { inject } from 'vue';
 
 export default {
+  setup() {
+    const filters = inject('filters');
+    const updateFilters = inject('updateFilters');
+    return {
+      filters,
+      updateFilters,
+    };
+  },
   data() {
     return {
       buttons: [
@@ -62,5 +71,17 @@ export default {
     };
   },
   components: { GuideButton },
+  methods: {
+    onButtonClick(event) {
+      const button = this.buttons.find((item) => item.text === event.text);
+      button.active = !button.active;
+      //   const isActiveButton = this.buttons.some((item) => item.active);
+      const newFilters = this.filters;
+      newFilters.aroma = this.buttons.filter((item) => item.active).map((item) => item.text);
+      this.updateFilters(newFilters);
+      console.log(this.filters);
+      this.$emit('changeFilters');
+    },
+  },
 };
 </script>
