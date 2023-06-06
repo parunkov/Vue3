@@ -261,6 +261,14 @@ const popinStagesData = {
       active: false,
     },
   },
+  aroma: {
+    headerTitle: 'Ароматические ноты',
+    headerText: 'Вы можете выбрать несколько',
+    firstButton: {
+      text: 'Продолжить',
+      active: false,
+    },
+  },
 };
 
 export { data, popinStagesData };

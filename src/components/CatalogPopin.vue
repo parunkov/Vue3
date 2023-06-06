@@ -15,6 +15,7 @@
       </div>
       <stiks-button-block v-if="stage === 'stiks'" @changeFilters="onChangeFilters" />
       <mentol-buttons-block v-if="stage === 'mentol'" @changeFilters="onChangeFilters" />
+      <aroma-buttons-block v-if="stage === 'aroma'" />
       <guide-button
         color="first"
         :text="stageData.firstButton.text"
@@ -32,6 +33,7 @@ import MentolButtonsBlock from '@/components/MentolButtonsBlock.vue';
 import { popinImage, popinArrow, popinCross } from '@/assets/images';
 import { popinStagesData } from '@/data/data';
 import { inject } from 'vue';
+import AromaButtonsBlock from './AromaButtonsBlock.vue';
 
 export default {
   setup() {
@@ -41,7 +43,7 @@ export default {
   data() {
     return {
       stage: 'begin',
-      stages: ['begin', 'stiks', 'mentol'],
+      stages: ['begin', 'stiks', 'mentol', 'aroma', 'end'],
       buttonActive: true,
       stageData: {},
       popinImage,
@@ -49,7 +51,7 @@ export default {
       popinCross,
     };
   },
-  components: { GuideButton, StiksButtonBlock, MentolButtonsBlock },
+  components: { GuideButton, StiksButtonBlock, MentolButtonsBlock, AromaButtonsBlock },
   methods: {
     onButtonClick() {
       if (this.stageData.firstButton.active) {
