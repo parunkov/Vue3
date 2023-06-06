@@ -10,6 +10,7 @@
     <div class="kam-112908-popin__section" :class="`kam-112908-popin__section_content_${stage}`">
       <div v-if="stage === 'begin'" v-html="popinImage" class="kam-112908-popin__image"></div>
       <div class="kam-112908-popin__title-block">
+        <div v-if="stage === 'final'" v-html="popinImage" class="kam-112908-popin__image"></div>
         <div class="kam-112908-popin__title">{{ stageData.headerTitle }}</div>
         <div class="kam-112908-popin__text">{{ stageData.headerText }}</div>
       </div>
@@ -43,7 +44,7 @@ export default {
   data() {
     return {
       stage: 'begin',
-      stages: ['begin', 'stiks', 'mentol', 'aroma', 'end'],
+      stages: ['begin', 'stiks', 'mentol', 'aroma', 'final'],
       buttonActive: true,
       stageData: {},
       popinImage,

@@ -269,6 +269,14 @@ const popinStagesData = {
       active: false,
     },
   },
+  final: {
+    headerTitle: 'Гид по вкусам',
+    headerText: '',
+    firstButton: {
+      text: 'Убрать рекомендации',
+      active: true,
+    },
+  },
 };
 
 export { data, popinStagesData };

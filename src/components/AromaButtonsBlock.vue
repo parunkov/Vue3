@@ -75,11 +75,9 @@ export default {
     onButtonClick(event) {
       const button = this.buttons.find((item) => item.text === event.text);
       button.active = !button.active;
-      //   const isActiveButton = this.buttons.some((item) => item.active);
       const newFilters = this.filters;
       newFilters.aroma = this.buttons.filter((item) => item.active).map((item) => item.text);
       this.updateFilters(newFilters);
-      console.log(this.filters);
       this.$emit('changeFilters');
     },
   },
