@@ -3,8 +3,8 @@
     :buttons="buttons"
     type="changeStiksFilter"
     @changeFilters="onChangeFilters"
-    :activeButton="this.filters.value?.stiks"
   />
+  <!-- :activeButton="this.filters.stiks" -->
 </template>
 <script>
 import { inject } from 'vue';
@@ -27,9 +27,8 @@ export default {
   components: { PopinButtonsBlock },
   methods: {
     onChangeFilters(event) {
-      const newFilters = JSON.parse(JSON.stringify(this.filters.value));
+      const newFilters = this.filters;
       newFilters.stiks = event.text;
-      console.log('0-', newFilters);
       this.updateFilters(newFilters);
       this.$emit('changeFilters');
     },

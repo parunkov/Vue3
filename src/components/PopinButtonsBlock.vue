@@ -31,22 +31,21 @@ export default {
       this.currentButtons.forEach((item) => {
         item.active = false;
       });
-      this.currentButtons.find((item) => item.text === event.text).active = true;
+      // this.currentButtons.find((item) => item.text === event.text).active = true;
       this.$emit('changeFilters', event);
-      const activeButton = this.currentButtons.find((item) => item.text === this.activeButton);
-      console.log('🚀 ~ ~ created ~ activeButton:', activeButton);
-      console.log(this.activeButton);
-      if (activeButton) {
-        activeButton.active = true;
-      }
+      // setTimeout(() => {
+      //   const activeButton = this.currentButtons.find((item) => item.text === this.activeButton);
+      //   console.log(activeButton);
+      //   if (activeButton) {
+      //     activeButton.active = true;
+      //   }
+      // }, 100);
     },
   },
   created() {
     const newButtons = this.buttons.map((item) => ({ text: item, active: false }));
     this.currentButtons = newButtons;
-    console.log(this.activeButton);
     const activeButton = this.currentButtons.find((item) => item.text === this.activeButton);
-    console.log('🚀 ~ file: PopinButtonsBlock.vue:42 ~ created ~ activeButton:', activeButton);
     if (activeButton) {
       activeButton.active = true;
     }

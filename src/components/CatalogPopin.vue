@@ -56,21 +56,21 @@ export default {
         const currentIndex = this.stages.indexOf(this.stage);
         this.stage = this.stages[currentIndex + 1];
         this.stageData = popinStagesData[this.stage];
-        if (this.filters.value && this.filters.value[this.stage]) {
-          this.stageData.firstButton.active = true;
-        }
+        // if (this.filters && this.filters[this.stage]) {
+        //   this.stageData.firstButton.active = true;
+        // }
       }
     },
     onArrowClick() {
       const currentIndex = this.stages.indexOf(this.stage);
       this.stage = this.stages[currentIndex - 1];
       this.stageData = popinStagesData[this.stage];
-      if (this.filters.value && this.filters.value[this.stage]) {
+      if (this.filters && this.filters[this.stage]) {
         this.stageData.firstButton.active = true;
       }
     },
     onChangeFilters() {
-      if (this.filters.value[this.stage]) {
+      if (this.filters[this.stage]) {
         this.stageData.firstButton.active = true;
       }
     },
