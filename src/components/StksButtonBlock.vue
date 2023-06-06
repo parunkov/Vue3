@@ -2,6 +2,7 @@
   <popin-buttons-block
     :buttons="buttons"
     type="changeStiksFilter"
+    modifier="stiks"
     @changeFilters="onChangeFilters"
   />
   <!-- :activeButton="this.filters.stiks" -->

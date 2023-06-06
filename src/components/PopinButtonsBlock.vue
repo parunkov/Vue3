@@ -13,16 +13,22 @@
 </template>
 <script>
 import GuideButton from './UI/GuideButton.vue';
+import { inject } from 'vue';
 
 export default {
+  setup() {
+    const filters = inject('filters');
+    return { filters };
+  },
   props: {
     buttons: Array,
     type: String,
-    activeButton: String,
+    modifier: String,
   },
   data() {
     return {
       currentButtons: this.buttons,
+      activeButton: null,
     };
   },
   components: { GuideButton },
@@ -31,20 +37,15 @@ export default {
       this.currentButtons.forEach((item) => {
         item.active = false;
       });
-      // this.currentButtons.find((item) => item.text === event.text).active = true;
+      this.activeButton = event.text;
+      this.currentButtons.find((item) => item.text === event.text).active = true;
       this.$emit('changeFilters', event);
-      // setTimeout(() => {
-      //   const activeButton = this.currentButtons.find((item) => item.text === this.activeButton);
-      //   console.log(activeButton);
-      //   if (activeButton) {
-      //     activeButton.active = true;
-      //   }
-      // }, 100);
     },
   },
   created() {
     const newButtons = this.buttons.map((item) => ({ text: item, active: false }));
     this.currentButtons = newButtons;
+    this.activeButton = this.filters[this.modifier];
     const activeButton = this.currentButtons.find((item) => item.text === this.activeButton);
     if (activeButton) {
       activeButton.active = true;

@@ -20,7 +20,7 @@ export default {
     let filters = reactive({});
     const updateFilters = (newFilters) => {
       filters = newFilters;
-      console.log(filters);
+      // console.log(filters);
     };
     provide('filters', filters);
     provide('updateFilters', updateFilters);
