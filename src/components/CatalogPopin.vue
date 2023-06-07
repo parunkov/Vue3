@@ -56,9 +56,16 @@ export default {
   methods: {
     onButtonClick() {
       if (this.stageData.firstButton.active) {
-        const currentIndex = this.stages.indexOf(this.stage);
-        this.stage = this.stages[currentIndex + 1];
-        this.stageData = popinStagesData[this.stage];
+        if (this.stage === 'final') {
+          this.stage = 'begin';
+          this.stageData = popinStagesData[this.stage];
+          this.filters = {};
+          console.log(this.filters);
+        } else {
+          const currentIndex = this.stages.indexOf(this.stage);
+          this.stage = this.stages[currentIndex + 1];
+          this.stageData = popinStagesData[this.stage];
+        }
       }
     },
     onArrowClick() {
