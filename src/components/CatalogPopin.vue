@@ -39,7 +39,8 @@ import AromaButtonsBlock from './AromaButtonsBlock.vue';
 export default {
   setup() {
     const filters = inject('filters');
-    return { filters };
+    const updateFilters = inject('updateFilters');
+    return { filters, updateFilters };
   },
   data() {
     return {
@@ -59,7 +60,9 @@ export default {
         if (this.stage === 'final') {
           this.stage = 'begin';
           this.stageData = popinStagesData[this.stage];
-          this.filters = {};
+          const newFilters = {};
+          this.updateFilters(newFilters);
+          // this.filters = {};
           console.log(this.filters);
         } else {
           const currentIndex = this.stages.indexOf(this.stage);
@@ -92,6 +95,14 @@ export default {
   created() {
     this.stageData = popinStagesData.begin;
     this.currentFilters = this.filters;
+  },
+  beforeUpdate() {
+    if (
+      (this.stage === 'stiks' || this.stage === 'mentol' || this.stage === 'aroma') &&
+      !this.filters[this.stage]
+    ) {
+      this.stageData.firstButton.active = false;
+    }
   },
 };
 </script>

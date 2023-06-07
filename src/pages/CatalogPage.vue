@@ -17,10 +17,23 @@ import catalogData from '@/parsing/catalogData.json';
 
 export default {
   setup() {
-    let filters = reactive({});
+    const filters = reactive({});
     const updateFilters = (newFilters) => {
-      filters = newFilters;
-      // console.log(filters);
+      if (newFilters.stiks) {
+        filters.stiks = newFilters.stiks;
+      } else {
+        delete filters.stiks;
+      }
+      if (newFilters.mentol) {
+        filters.mentol = newFilters.mentol;
+      } else {
+        delete filters.mentol;
+      }
+      if (newFilters.aroma) {
+        filters.aroma = [...newFilters.aroma];
+      } else {
+        delete filters.aroma;
+      }
     };
     provide('filters', filters);
     provide('updateFilters', updateFilters);
