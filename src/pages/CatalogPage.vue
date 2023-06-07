@@ -6,7 +6,11 @@
         <catalog-item v-for="card in cards" :key="card.id" :card="card" />
       </div>
     </div>
-    <catalog-popin @changeFilters="onChangeFilters" />
+    <catalog-popin
+      v-if="popinVisible"
+      @changeFilters="onChangeFilters"
+      @closePopin="onClosePopin"
+    />
   </div>
 </template>
 <script>
@@ -43,12 +47,17 @@ export default {
   },
   data() {
     return {
-      catalogFilters: {},
+      popinVisible: true,
     };
   },
   components: { CatalogItem, CatalogPopin },
   methods: {
     onChangeFilters() {
+      this.filterCards(this.cards, this.filters);
+    },
+    onClosePopin() {
+      this.popinVisible = false;
+      this.filters = {};
       this.filterCards(this.cards, this.filters);
     },
   },

@@ -6,7 +6,11 @@
       @click="onArrowClick"
       :class="`kam-112908-popin__arrow_content_${stage}`"
     ></div>
-    <div class="kam-112908-popin__close-button" v-html="popinCross"></div>
+    <div
+      class="kam-112908-popin__close-button"
+      v-html="popinCross"
+      @click="$emit('closePopin')"
+    ></div>
     <div class="kam-112908-popin__section" :class="`kam-112908-popin__section_content_${stage}`">
       <div v-if="stage === 'begin'" v-html="popinImage" class="kam-112908-popin__image"></div>
       <div class="kam-112908-popin__title-block">
