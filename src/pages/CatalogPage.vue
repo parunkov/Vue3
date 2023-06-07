@@ -13,8 +13,7 @@
 import { provide, reactive } from 'vue';
 import CatalogItem from '@/components/CatalogItem.vue';
 import CatalogPopin from '@/components/CatalogPopin.vue';
-import catalogData from '@/parsing/catalogData.json';
-import { data } from '@/data/data';
+import { useFilter } from '@/hooks/useFilter';
 
 export default {
   setup() {
@@ -38,38 +37,19 @@ export default {
     };
     provide('filters', filters);
     provide('updateFilters', updateFilters);
-    return { filters };
+
+    const { cards, filterCards } = useFilter();
+    return { filters, cards, filterCards };
   },
   data() {
     return {
-      cards: catalogData,
       catalogFilters: {},
     };
   },
   components: { CatalogItem, CatalogPopin },
   methods: {
     onChangeFilters() {
-      const filteredData = Object.keys(data)
-        .filter((item) =>
-          !this.filters.stiks || this.filters.stiks === 'Все'
-            ? item
-            : data[item].stiks === this.filters.stiks,
-        )
-        .filter((item) =>
-          !this.filters.mentol || this.filters.mentol === 'Все'
-            ? item
-            : data[item].mentol === this.filters.mentol,
-        )
-        .filter((item) =>
-          !this.filters.aroma
-            ? item
-            : data[item].aroma.some((item) => this.filters.aroma.includes(item)),
-        );
-      if (this.filters.stiks || this.filters.mentol || this.filters.aroma) {
-        this.cards = catalogData.filter((item) => filteredData.includes(item.id));
-      } else {
-        this.cards = catalogData;
-      }
+      this.filterCards(this.cards, this.filters);
     },
   },
 };
