@@ -6,7 +6,7 @@
         <catalog-item v-for="card in cards" :key="card.id" :card="card" />
       </div>
     </div>
-    <catalog-popin />
+    <catalog-popin @changeFilters="onChangeFilters" />
   </div>
 </template>
 <script>
@@ -14,6 +14,7 @@ import { provide, reactive } from 'vue';
 import CatalogItem from '@/components/CatalogItem.vue';
 import CatalogPopin from '@/components/CatalogPopin.vue';
 import catalogData from '@/parsing/catalogData.json';
+import { data } from '@/data/data';
 
 export default {
   setup() {
@@ -37,6 +38,7 @@ export default {
     };
     provide('filters', filters);
     provide('updateFilters', updateFilters);
+    return { filters };
   },
   data() {
     return {
@@ -45,6 +47,31 @@ export default {
     };
   },
   components: { CatalogItem, CatalogPopin },
+  methods: {
+    onChangeFilters() {
+      const filteredData = Object.keys(data)
+        .filter((item) =>
+          !this.filters.stiks || this.filters.stiks === 'Все'
+            ? item
+            : data[item].stiks === this.filters.stiks,
+        )
+        .filter((item) =>
+          !this.filters.mentol || this.filters.mentol === 'Все'
+            ? item
+            : data[item].mentol === this.filters.mentol,
+        )
+        .filter((item) =>
+          !this.filters.aroma
+            ? item
+            : data[item].aroma.some((item) => this.filters.aroma.includes(item)),
+        );
+      if (this.filters.stiks || this.filters.mentol || this.filters.aroma) {
+        this.cards = catalogData.filter((item) => filteredData.includes(item.id));
+      } else {
+        this.cards = catalogData;
+      }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

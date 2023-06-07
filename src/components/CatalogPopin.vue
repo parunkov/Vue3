@@ -62,8 +62,6 @@ export default {
           this.stageData = popinStagesData[this.stage];
           const newFilters = {};
           this.updateFilters(newFilters);
-          // this.filters = {};
-          console.log(this.filters);
         } else {
           const currentIndex = this.stages.indexOf(this.stage);
           this.stage = this.stages[currentIndex + 1];
@@ -90,6 +88,7 @@ export default {
           this.stageData.firstButton.active = false;
         }
       }
+      this.$emit('changeFilters');
     },
   },
   created() {
@@ -103,6 +102,7 @@ export default {
     ) {
       this.stageData.firstButton.active = false;
     }
+    this.$emit('changeFilters');
   },
 };
 </script>

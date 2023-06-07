@@ -83,7 +83,6 @@ export default {
   },
   created() {
     this.buttons.forEach((item) => {
-      console.log(this.filters);
       item.active = false;
       if (this.filters.aroma?.includes(item.text)) {
         item.active = true;
