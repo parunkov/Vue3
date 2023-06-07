@@ -1,4 +1,10 @@
-# vue3
+# Компонент "Гид по вкусам"
+
+Компонент на Vue
+
+## Демо-страница
+
+https://parunkov.github.io/Vue3/
 
 ## Project setup
 ```
